@@ -34,8 +34,9 @@ public class SecondStage {
     }
     
     public void createAndShowGUI() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setPreferredSize( Toolkit.getDefaultToolkit().getScreenSize());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setUndecorated(true);
 
         frame.add(jp);
         
@@ -68,6 +69,12 @@ public class SecondStage {
                 jp.setBackground(java.awt.Color.blue);
                 break;
         }
+    }
+    
+    public void clearCanvas() {
+        jp.removeAll();
+        jp.repaint();
+        jp.validate();
     }
     
     public JPanel generateRectangle() {

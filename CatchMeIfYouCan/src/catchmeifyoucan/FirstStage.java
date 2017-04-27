@@ -17,12 +17,14 @@ import javafx.stage.Stage;
 
 public class FirstStage extends Stage {
 
-    Button openOther = new Button("Random Color");
+    Button changeBackgroundColor = new Button("Random Color");
+    Button clearCanvas = new Button("Clear Canvas");
     HBox x = new HBox();
     SecondStage ss;
 
     FirstStage() {
-        x.getChildren().add(openOther);
+        x.getChildren().add(changeBackgroundColor);
+        x.getChildren().add(clearCanvas);
         this.setScene(new Scene(x, 300, 300));
         this.show();
         ss = new SecondStage();
@@ -36,10 +38,17 @@ public class FirstStage extends Stage {
 
         
             
-        openOther.setOnAction(new EventHandler<ActionEvent>() {
+        changeBackgroundColor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
                 ss.updateColor();
+            }//end action
+        });
+        
+        clearCanvas.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                ss.clearCanvas();
             }//end action
         });
     }
