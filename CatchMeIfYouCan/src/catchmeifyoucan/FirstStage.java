@@ -36,11 +36,6 @@ public class FirstStage extends JPanel {
         panel.add(add);
         panel.add(subtract);
         
-        // Add elements to the panel
-        setLayout(new BorderLayout());
-        add(Delay, BorderLayout.NORTH);
-        add(panel, BorderLayout.SOUTH);
-        
         // Register listeners
         suspend.addActionListener(new Listener());
         resume.addActionListener(new Listener());
@@ -71,6 +66,10 @@ public class FirstStage extends JPanel {
 
                 frame = new JFrame("Controller");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                // Add elements to the frame
+                setLayout(new BorderLayout());
+                frame.add(Delay, BorderLayout.NORTH);
+                frame.add(panel, BorderLayout.SOUTH);
                 frame.add(panel);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
