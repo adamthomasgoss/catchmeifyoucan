@@ -30,20 +30,23 @@ public class FirstStage extends JPanel {
     private final JButton changeRectangleColor = new JButton("Change Rectangle Color");
     
     // Other Controls
-    private JScrollBar Delay = new JScrollBar();    
+    private JScrollBar Delay = new JScrollBar();
+    private JScrollBar RectangleSize = new JScrollBar();
     private SecondStage ss;
     private JFrame frame;
 
     FirstStage() {
         
         JPanel panel1 = new JPanel();
+        panel1.add(Delay, BorderLayout.NORTH);
         panel1.add(suspend);
         panel1.add(resume);
         panel1.add(add);
         panel1.add(subtract);
         
         JPanel panel2 = new JPanel();
-        panel2.add(changeRectangleColor);
+        panel2.add(RectangleSize, BorderLayout.NORTH);
+        panel2.add(changeRectangleColor, BorderLayout.SOUTH);
         
         // Register listeners
         suspend.addActionListener(new Listener());
@@ -58,10 +61,18 @@ public class FirstStage extends JPanel {
         // Layout Control Panel
         Delay.setOrientation(JScrollBar.HORIZONTAL);
         ss.setDelay(Delay.getMaximum());
+        RectangleSize.setOrientation(JScrollBar.HORIZONTAL);
+        ss.setRectangleSize(RectangleSize.getMaximum());
         
         Delay.addAdjustmentListener(new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 ss.setDelay(Delay.getMaximum() - e.getValue());
+            }
+        });
+        
+        RectangleSize.addAdjustmentListener(new AdjustmentListener() {
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                ss.setRectangleSize(RectangleSize.getMaximum() - e.getValue());
             }
         });
         
@@ -78,9 +89,10 @@ public class FirstStage extends JPanel {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 // Add elements to the frame
                 setLayout(new BorderLayout());
-                frame.add(Delay, BorderLayout.NORTH);
-                frame.add(panel1, BorderLayout.CENTER);
+                
+                frame.add(panel1, BorderLayout.NORTH);
                 frame.add(panel2, BorderLayout.SOUTH);
+                
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);

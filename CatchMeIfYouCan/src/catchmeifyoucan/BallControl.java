@@ -28,4 +28,5 @@ public class BallControl extends JPanel {
     public void resume() { ballPanel.resume(); }
     public void setDelay(int delay) { ballPanel.setDelay(delay); }
     public void changeRectangleColor() { ballPanel.changeRectangleColor(); }
+    public void setRectangleSize(int size) { ballPanel.setRectangleSize(size); }
 }

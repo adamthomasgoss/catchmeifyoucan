@@ -20,6 +20,7 @@ import javax.swing.Timer;
 class BallPanel extends JPanel {
 
     private int delay = 30;
+    private int rectangleSize = 100;
     private ArrayList<AnimatedShape> list = new ArrayList<AnimatedShape>();
     private AnimatedRectange rectangle;
 
@@ -94,5 +95,9 @@ class BallPanel extends JPanel {
     
     public void changeRectangleColor() {
         rectangle.changeRectangleColor();
+    }
+    
+    public void setRectangleSize(int size) {
+        rectangle.setSize(size);
     }
 }

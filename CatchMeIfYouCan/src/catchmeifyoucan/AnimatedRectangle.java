@@ -37,4 +37,10 @@ class AnimatedRectange extends AbstractAnimatedShape {
         this.color = new Color((int) (Math.random() * 256),
                         (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
+    
+    public void setSize(int size) {
+        Rectangle bounds = getBounds();
+        bounds.height = size;
+        this.setBounds(bounds);
+    }
 }
