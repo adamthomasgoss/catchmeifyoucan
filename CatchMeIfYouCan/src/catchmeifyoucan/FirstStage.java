@@ -5,8 +5,6 @@
  */
 package catchmeifyoucan;
 
-import java.awt.*;
-import javax.swing.*;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
