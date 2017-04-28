@@ -20,27 +20,37 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class FirstStage extends JPanel {
 
+    // Motion Buttons
     private final JButton add = new JButton("+1");
     private final JButton subtract = new JButton("-1");
     private final JButton suspend = new JButton("Suspend");
     private final JButton resume = new JButton("Resume");
+    
+    // Color Buttons
+    private final JButton changeRectangleColor = new JButton("Change Rectangle Color");
+    
+    // Other Controls
     private JScrollBar Delay = new JScrollBar();    
     private SecondStage ss;
     private JFrame frame;
 
     FirstStage() {
         
-        JPanel panel = new JPanel();
-        panel.add(suspend);
-        panel.add(resume);
-        panel.add(add);
-        panel.add(subtract);
+        JPanel panel1 = new JPanel();
+        panel1.add(suspend);
+        panel1.add(resume);
+        panel1.add(add);
+        panel1.add(subtract);
+        
+        JPanel panel2 = new JPanel();
+        panel2.add(changeRectangleColor);
         
         // Register listeners
         suspend.addActionListener(new Listener());
         resume.addActionListener(new Listener());
         add.addActionListener(new Listener());
         subtract.addActionListener(new Listener());
+        changeRectangleColor.addActionListener(new Listener());
         
         // Construct View
         ss = new SecondStage();
@@ -69,8 +79,8 @@ public class FirstStage extends JPanel {
                 // Add elements to the frame
                 setLayout(new BorderLayout());
                 frame.add(Delay, BorderLayout.NORTH);
-                frame.add(panel, BorderLayout.SOUTH);
-                frame.add(panel);
+                frame.add(panel1, BorderLayout.CENTER);
+                frame.add(panel2, BorderLayout.SOUTH);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
@@ -89,6 +99,8 @@ public class FirstStage extends JPanel {
                 ss.add();
             } else if (e.getSource() == subtract) {
                 ss.subtract();
+            } else if (e.getSource() == changeRectangleColor) {
+                ss.changeRectangleColor();
             }
         }
     }

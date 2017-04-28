@@ -50,4 +50,5 @@ public class SecondStage {
     public void suspend() { bc.suspend(); }
     public void resume() { bc.resume(); }
     public void setDelay (int delay) { bc.setDelay(delay); }
+    public void changeRectangleColor() { bc.changeRectangleColor(); }
 }

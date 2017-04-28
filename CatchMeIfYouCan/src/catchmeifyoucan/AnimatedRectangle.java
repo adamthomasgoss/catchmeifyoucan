@@ -32,4 +32,9 @@ class AnimatedRectange extends AbstractAnimatedShape {
         g2d.setColor(color);
         g2d.fill(bounds);
     }
+    
+    public void changeRectangleColor() {
+        this.color = new Color((int) (Math.random() * 256),
+                        (int) (Math.random() * 256), (int) (Math.random() * 256));
+    }
 }

@@ -3,13 +3,7 @@ package catchmeifyoucan;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 
 
 public class BallControl extends JPanel {
@@ -33,4 +27,5 @@ public class BallControl extends JPanel {
     public void suspend() { ballPanel.suspend(); }
     public void resume() { ballPanel.resume(); }
     public void setDelay(int delay) { ballPanel.setDelay(delay); }
+    public void changeRectangleColor() { ballPanel.changeRectangleColor(); }
 }

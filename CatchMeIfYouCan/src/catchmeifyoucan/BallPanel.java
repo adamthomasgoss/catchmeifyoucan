@@ -91,4 +91,8 @@ class BallPanel extends JPanel {
         this.delay = delay;
         timer.setDelay(delay);
     }
+    
+    public void changeRectangleColor() {
+        rectangle.changeRectangleColor();
+    }
 }
