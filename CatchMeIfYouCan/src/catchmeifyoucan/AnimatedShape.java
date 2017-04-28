@@ -7,6 +7,9 @@ import javax.swing.JComponent;
 
 
 public interface AnimatedShape {
+
     public void update(Rectangle bounds);
+
     public void paint(JComponent parent, Graphics2D g2d);
+
 }

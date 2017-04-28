@@ -56,27 +56,18 @@ public class SecondStage {
                 }
 
                 JFrame frame = new JFrame("MultipleBallApp");
+                // MARK: setup frame behavior
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                frame.setUndecorated(true);
+                
+                frame.add(jp);
                 frame.add(new BallControl());
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         });
-    }
-
-    // MARK: My methods
-    
-    public void createAndShowGUI() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setUndecorated(true);
-
-        frame.add(jp);
-        
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true); 
     }
     
     public void updateColor() {

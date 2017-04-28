@@ -28,15 +28,8 @@ public class FirstStage extends Stage {
         this.setScene(new Scene(x, 300, 300));
         this.show();
         ss = new SecondStage();
-        
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                ss.createAndShowGUI();
-            }
-        });
-        
 
-        
+        // MARK: Listeners
             
         changeBackgroundColor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
