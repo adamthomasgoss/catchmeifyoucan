@@ -31,7 +31,7 @@ public class SecondStage {
                     ex.printStackTrace();
                 }
 
-                JFrame frame = new JFrame("MultipleBallApp");
+                frame = new JFrame("MultipleBallApp");
                 // MARK: setup frame behavior
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -49,4 +49,5 @@ public class SecondStage {
     public void subtract() { bc.subtract(); }
     public void suspend() { bc.suspend(); }
     public void resume() { bc.resume(); }
+    public void setDelay (int delay) { bc.setDelay(delay); }
 }

@@ -6,59 +6,91 @@
 package catchmeifyoucan;
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
-public class FirstStage extends Stage {
+public class FirstStage extends JPanel {
 
-    Button add = new Button("+1");
-    Button subtract = new Button("-1");
-    Button suspend = new Button("Suspend");
-    Button resume = new Button("Resume");
-    HBox x = new HBox();
-    SecondStage ss;
+    private final JButton add = new JButton("+1");
+    private final JButton subtract = new JButton("-1");
+    private final JButton suspend = new JButton("Suspend");
+    private final JButton resume = new JButton("Resume");
+    private JScrollBar Delay = new JScrollBar();    
+    private SecondStage ss;
+    private JFrame frame;
 
     FirstStage() {
-        x.getChildren().add(add);
-        x.getChildren().add(subtract);
-        x.getChildren().add(suspend);
-        x.getChildren().add(resume);
-        this.setScene(new Scene(x, 300, 300));
-        this.show();
+        
+        JPanel panel = new JPanel();
+        panel.add(suspend);
+        panel.add(resume);
+        panel.add(add);
+        panel.add(subtract);
+        
+        // Add elements to the panel
+        setLayout(new BorderLayout());
+        add(Delay, BorderLayout.NORTH);
+        add(panel, BorderLayout.SOUTH);
+        
+        // Register listeners
+        suspend.addActionListener(new Listener());
+        resume.addActionListener(new Listener());
+        add.addActionListener(new Listener());
+        subtract.addActionListener(new Listener());
+        
+        // Construct View
         ss = new SecondStage();
+        
+        // Layout Control Panel
+        Delay.setOrientation(JScrollBar.HORIZONTAL);
+        ss.setDelay(Delay.getMaximum());
+        
+        Delay.addAdjustmentListener(new AdjustmentListener() {
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                ss.setDelay(Delay.getMaximum() - e.getValue());
+            }
+        });
+        
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                }
 
-        // MARK: Listeners
-        
-        add.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                ss.add();
-            }//end action
+                frame = new JFrame("Controller");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.add(panel);
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }
         });
-        
-        subtract.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                ss.subtract();
-            }//end action
-        });
-        
-        suspend.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
+    }
+    
+    class Listener implements ActionListener {
+
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            if (e.getSource() == suspend) {
                 ss.suspend();
-            }//end action
-        });
-        
-        resume.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
+            } else if (e.getSource() == resume) {
                 ss.resume();
-            }//end action
-        });
+            } else if (e.getSource() == add) {
+                ss.add();
+            } else if (e.getSource() == subtract) {
+                ss.subtract();
+            }
+        }
     }
 }

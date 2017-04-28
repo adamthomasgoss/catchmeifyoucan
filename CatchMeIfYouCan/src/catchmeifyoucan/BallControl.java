@@ -15,59 +15,22 @@ import javax.swing.JScrollBar;
 public class BallControl extends JPanel {
 
     private BallPanel ballPanel = new BallPanel();
-    public JButton Suspend = new JButton("Suspend");
-    public JButton Resume = new JButton("Resume");
-    public JButton Add = new JButton("+1");
-    public JButton Subtract = new JButton("-1");
-    private JScrollBar Delay = new JScrollBar();
 
     public BallControl() {
         // Group buttons in a panel
         JPanel panel = new JPanel();
-        panel.add(Suspend);
-        panel.add(Resume);
-        panel.add(Add);
-        panel.add(Subtract);
 
         // Add ball and buttons to the panel
         ballPanel.setBorder(new javax.swing.border.LineBorder(Color.red));
-        Delay.setOrientation(JScrollBar.HORIZONTAL);
-        ballPanel.setDelay(Delay.getMaximum());
         setLayout(new BorderLayout());
-        add(Delay, BorderLayout.NORTH);
+        // add(Delay, BorderLayout.NORTH);
         add(ballPanel, BorderLayout.CENTER);
-        add(panel, BorderLayout.SOUTH);
-
-        // Register listeners
-        Suspend.addActionListener(new Listener());
-        Resume.addActionListener(new Listener());
-        Add.addActionListener(new Listener());
-        Subtract.addActionListener(new Listener());
-        Delay.addAdjustmentListener(new AdjustmentListener() {
-
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                ballPanel.setDelay(Delay.getMaximum() - e.getValue());
-            }
-        });
+        // add(panel, BorderLayout.SOUTH);
     }
     
     public void add() { ballPanel.add(); }
     public void subtract() { ballPanel.subtract(); }
     public void suspend() { ballPanel.suspend(); }
     public void resume() { ballPanel.resume(); }
-
-    class Listener implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == Suspend) {
-                ballPanel.suspend();
-            } else if (e.getSource() == Resume) {
-                ballPanel.resume();
-            } else if (e.getSource() == Add) {
-                ballPanel.add();
-            } else if (e.getSource() == Subtract) {
-                ballPanel.subtract();
-            }
-        }
-    }
+    public void setDelay(int delay) { ballPanel.setDelay(delay); }
 }
