@@ -17,31 +17,49 @@ import javafx.stage.Stage;
 
 public class FirstStage extends Stage {
 
-    Button changeBackgroundColor = new Button("Random Color");
-    Button clearCanvas = new Button("Clear Canvas");
+    Button add = new Button("+1");
+    Button subtract = new Button("-1");
+    Button suspend = new Button("Suspend");
+    Button resume = new Button("Resume");
     HBox x = new HBox();
     SecondStage ss;
 
     FirstStage() {
-        x.getChildren().add(changeBackgroundColor);
-        x.getChildren().add(clearCanvas);
+        x.getChildren().add(add);
+        x.getChildren().add(subtract);
+        x.getChildren().add(suspend);
+        x.getChildren().add(resume);
         this.setScene(new Scene(x, 300, 300));
         this.show();
         ss = new SecondStage();
 
         // MARK: Listeners
-            
-        changeBackgroundColor.setOnAction(new EventHandler<ActionEvent>() {
+        
+        add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                ss.updateColor();
+                ss.add();
             }//end action
         });
         
-        clearCanvas.setOnAction(new EventHandler<ActionEvent>() {
+        subtract.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                ss.clearCanvas();
+                ss.subtract();
+            }//end action
+        });
+        
+        suspend.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                ss.suspend();
+            }//end action
+        });
+        
+        resume.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                ss.resume();
             }//end action
         });
     }

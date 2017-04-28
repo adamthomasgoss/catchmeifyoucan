@@ -39,13 +39,12 @@ public class SecondStage {
     
     public Random rand = new Random();
     public JFrame frame;
-    public JPanel jp;
-    public String[] colors = {"0099cc", "ccffcc", "66ccff", "003399"};
+    private BallControl bc;
 
     public SecondStage() {
         // Constructor
-        // frame = new JFrame("HelloWorldSwing");
-        jp = new JPanel();
+        bc = new BallControl();
+        
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -61,8 +60,7 @@ public class SecondStage {
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.setUndecorated(true);
                 
-                frame.add(jp);
-                frame.add(new BallControl());
+                frame.add(bc);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
@@ -70,37 +68,10 @@ public class SecondStage {
         });
     }
     
-    public void updateColor() {
-        jp.add(generateRectangle());
-        switch(rand.nextInt(5)) {
-            case 0:
-                frame.getContentPane().setBackground(java.awt.Color.red);
-                jp.setBackground(java.awt.Color.red);
-                break;
-            case 1:
-                frame.getContentPane().setBackground(java.awt.Color.orange);
-                jp.setBackground(java.awt.Color.orange);
-                break;
-            case 2:
-                frame.getContentPane().setBackground(java.awt.Color.yellow);
-                jp.setBackground(java.awt.Color.yellow);
-                break;
-            case 3:
-                frame.getContentPane().setBackground(java.awt.Color.green);
-                jp.setBackground(java.awt.Color.green);
-                break;
-            default:
-                frame.getContentPane().setBackground(java.awt.Color.blue);
-                jp.setBackground(java.awt.Color.blue);
-                break;
-        }
-    }
-    
-    public void clearCanvas() {
-        jp.removeAll();
-        jp.repaint();
-        jp.validate();
-    }
+    public void add() { bc.add(); }
+    public void subtract() { bc.subtract(); }
+    public void suspend() { bc.suspend(); }
+    public void resume() { bc.resume(); }
     
     public JPanel generateRectangle() {
         JPanel rectangle = new JPanel();

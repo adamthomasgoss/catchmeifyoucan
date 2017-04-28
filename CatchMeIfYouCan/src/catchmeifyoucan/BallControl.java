@@ -15,10 +15,10 @@ import javax.swing.JScrollBar;
 public class BallControl extends JPanel {
 
     private BallPanel ballPanel = new BallPanel();
-    private JButton Suspend = new JButton("Suspend");
-    private JButton Resume = new JButton("Resume");
-    private JButton Add = new JButton("+1");
-    private JButton Subtract = new JButton("-1");
+    public JButton Suspend = new JButton("Suspend");
+    public JButton Resume = new JButton("Resume");
+    public JButton Add = new JButton("+1");
+    public JButton Subtract = new JButton("-1");
     private JScrollBar Delay = new JScrollBar();
 
     public BallControl() {
@@ -50,6 +50,11 @@ public class BallControl extends JPanel {
             }
         });
     }
+    
+    public void add() { ballPanel.add(); }
+    public void subtract() { ballPanel.subtract(); }
+    public void suspend() { ballPanel.suspend(); }
+    public void resume() { ballPanel.resume(); }
 
     class Listener implements ActionListener {
 
