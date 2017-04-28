@@ -1,2 +1,4 @@
 nbproject/*
 nbproject/build-impl.xml
+*.err
+*.log
