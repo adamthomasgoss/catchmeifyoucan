@@ -16,11 +16,11 @@ public class SecondStage {
     
     public Random rand = new Random();
     public JFrame frame;
-    private BallControl bc;
+    private AnimationControl ac;
 
     public SecondStage() {
         // Constructor
-        bc = new BallControl();
+        ac = new AnimationControl();
         
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -37,7 +37,7 @@ public class SecondStage {
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.setUndecorated(true);
                 
-                frame.add(bc);
+                frame.add(ac);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
@@ -45,11 +45,13 @@ public class SecondStage {
         });
     }
     
-    public void add() { bc.add(); }
-    public void subtract() { bc.subtract(); }
-    public void suspend() { bc.suspend(); }
-    public void resume() { bc.resume(); }
-    public void setDelay (int delay) { bc.setDelay(delay); }
-    public void changeRectangleColor() { bc.changeRectangleColor(); }
-    public void setRectangleSize (int size) { bc.setRectangleSize(size); }
+    public void add() { ac.add(); }
+    public void subtract() { ac.subtract(); }
+    public void suspend() { ac.suspend(); }
+    public void resume() { ac.resume(); }
+    public void setDelay (int delay) { ac.setDelay(delay); }
+    public void changeRectangleColor() { ac.changeRectangleColor(); }
+    public void setRectangleSize (int size) { ac.setRectangleSize(size); }
+    public void addAirplane() { ac.addAirplane(); }
+    public void removeAirplane() {ac.removeAirplane(); }
 }

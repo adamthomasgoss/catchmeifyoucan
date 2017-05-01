@@ -26,6 +26,8 @@ public class FirstStage extends JPanel {
     private final JButton subtract = new JButton("-1");
     private final JButton suspend = new JButton("Suspend");
     private final JButton resume = new JButton("Resume");
+    private final JButton addPlane = new JButton("+1 Plane");
+    private final JButton removePlane = new JButton("-1 Plane");
     
     // Color Buttons
     private final JButton changeRectangleColor = new JButton("Change Rectangle Color");
@@ -51,12 +53,19 @@ public class FirstStage extends JPanel {
         panel2.add(RectangleSize, BorderLayout.NORTH);
         panel2.add(changeRectangleColor, BorderLayout.SOUTH);
         
+        JPanel panel3 = new JPanel();
+        setLayout(new BorderLayout());
+        panel3.add(addPlane);
+        panel3.add(removePlane);
+        
         // Register listeners
         suspend.addActionListener(new Listener());
         resume.addActionListener(new Listener());
         add.addActionListener(new Listener());
         subtract.addActionListener(new Listener());
         changeRectangleColor.addActionListener(new Listener());
+        addPlane.addActionListener(new Listener());
+        removePlane.addActionListener(new Listener());
         
         // Construct View
         ss = new SecondStage();
@@ -94,7 +103,8 @@ public class FirstStage extends JPanel {
                 setLayout(new BorderLayout());
                 
                 frame.add(panel1, BorderLayout.NORTH);
-                frame.add(panel2, BorderLayout.SOUTH);
+                frame.add(panel2, BorderLayout.CENTER);
+                frame.add(panel3, BorderLayout.SOUTH);
                 
                 frame.pack();
                 frame.setLocationRelativeTo(null);
@@ -116,6 +126,10 @@ public class FirstStage extends JPanel {
                 ss.subtract();
             } else if (e.getSource() == changeRectangleColor) {
                 ss.changeRectangleColor();
+            } else if (e.getSource() == addPlane) {
+                ss.addAirplane();
+            } else if (e.getSource() == removePlane) {
+                ss.removeAirplane();
             }
         }
     }

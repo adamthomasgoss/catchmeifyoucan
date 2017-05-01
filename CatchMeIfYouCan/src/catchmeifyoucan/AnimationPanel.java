@@ -33,8 +33,8 @@ class AnimationPanel extends JPanel {
     public AnimationPanel() {
         screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-        this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.BLUE);
-        this.airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST, "plane1.png");
+        // this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.BLUE);
+        this.airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST, "images/plane1.png");
         this.airplane_WEST = new AnimatedAirplane(screenWidth, 200, 355, 355, AnimatedShape.Direction.WEST, "images/plane1_700wide_left.png");
 
         timer.start();
@@ -56,7 +56,7 @@ class AnimationPanel extends JPanel {
             for (AnimatedShape ball : list) {
                 ball.update(getBounds());
             }
-            rectangle.update(getBounds());
+            // rectangle.update(getBounds());
             airplane.update(getBounds());
             airplane_WEST.update(getBounds());
             repaint();
@@ -81,6 +81,14 @@ class AnimationPanel extends JPanel {
             list.remove(list.size() - 1); // Remove the last ball
         }
     }
+    
+    public void addAirplane() {
+        // TODO
+    }
+    
+    public void removeAirplane() {
+        
+    }
 
     @Override
     // Paint the objects in the scene
@@ -91,7 +99,7 @@ class AnimationPanel extends JPanel {
         for (AnimatedShape ball : list) {
             ball.paint(this, g2d);
         }
-        rectangle.paint(this, g2d);
+        // rectangle.paint(this, g2d);
         airplane.paint(this, g2d);
         airplane_WEST.paint(this, g2d);
     }
@@ -110,10 +118,10 @@ class AnimationPanel extends JPanel {
     }
     
     public void changeRectangleColor() {
-        rectangle.changeRectangleColor();
+        // rectangle.changeRectangleColor();
     }
     
     public void setRectangleSize(int size) {
-        rectangle.setSize(size);
+        // rectangle.setSize(size);
     }
 }
