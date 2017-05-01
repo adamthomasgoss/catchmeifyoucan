@@ -17,15 +17,17 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
-class BallPanel extends JPanel {
+class AnimationPanel extends JPanel {
 
     private int delay = 30;
     private int rectangleSize = 100;
     private ArrayList<AnimatedShape> list = new ArrayList<AnimatedShape>();
     private AnimatedRectange rectangle;
+    private AnimatedPlane airplane;
 
-    public BallPanel() {
+    public AnimationPanel() {
         this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.RED);
+        this.airplane = new AnimatedPlane(-200,200, 200, 200, Color.BLUE);
 
         timer.start();
     }
@@ -36,6 +38,7 @@ class BallPanel extends JPanel {
     }
 
     // Create a timer with the initial delay
+    // Add everything to the timer getBounds()
     protected Timer timer = new Timer(delay, new ActionListener() {
         /**
          * Handle the action event
@@ -46,6 +49,7 @@ class BallPanel extends JPanel {
                 ball.update(getBounds());
             }
             rectangle.update(getBounds());
+            airplane.update(getBounds());
             repaint();
         }
     });
@@ -70,6 +74,7 @@ class BallPanel extends JPanel {
     }
 
     @Override
+    // Paint the objects in the scene
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -78,6 +83,7 @@ class BallPanel extends JPanel {
             ball.paint(this, g2d);
         }
         rectangle.paint(this, g2d);
+        airplane.paint(this, g2d);
     }
 
     public void suspend() {

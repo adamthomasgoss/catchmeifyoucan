@@ -7,6 +7,7 @@ package catchmeifyoucan;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
@@ -38,6 +39,7 @@ public class FirstStage extends JPanel {
     FirstStage() {
         
         JPanel panel1 = new JPanel();
+        panel1.setBackground(Color.GRAY);
         panel1.add(Delay, BorderLayout.NORTH);
         panel1.add(suspend);
         panel1.add(resume);
@@ -45,6 +47,7 @@ public class FirstStage extends JPanel {
         panel1.add(subtract);
         
         JPanel panel2 = new JPanel();
+        setLayout(new BorderLayout());
         panel2.add(RectangleSize, BorderLayout.NORTH);
         panel2.add(changeRectangleColor, BorderLayout.SOUTH);
         

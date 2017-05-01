@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class BallControl extends JPanel {
 
-    private BallPanel ballPanel = new BallPanel();
+    private AnimationPanel ballPanel = new AnimationPanel();
 
     public BallControl() {
         // Group buttons in a panel
