@@ -92,16 +92,20 @@ class AnimationPanel extends JPanel {
         int speed = width/40;
         AnimatedShape.Direction direction = (dir == 0) ? AnimatedShape.Direction.EAST : AnimatedShape.Direction.WEST;
         String imageFile = (dir == 0) ? "images/plane1.png" : "images/plane1_700wide_left.png";
+        int x = (dir == 0) ? -200 : 1000;
+        int y = ThreadLocalRandom.current().nextInt(0, 1000-height);
         
         //AnimatedAirplane airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST, "images/plane1.png");
         //AnimatedAirplane airplane_WEST = new AnimatedAirplane(screenWidth, 200, 355, 355, AnimatedShape.Direction.WEST, "images/plane1_700wide_left.png");
-        AnimatedAirplane airplane = new AnimatedAirplane(300, 300, width, height, direction, imageFile, speed, buffer);
+        AnimatedAirplane airplane = new AnimatedAirplane(x, y, width, height, direction, imageFile, speed, buffer);
         
         list_airplanes.add(airplane);
     }
     
     public void removeAirplane() {
-        // TODO
+        if (list_airplanes.size() > 0) {
+            list_airplanes.remove(list_airplanes.size() - 1); // Remove the last airplane
+        }
     }
 
     @Override
