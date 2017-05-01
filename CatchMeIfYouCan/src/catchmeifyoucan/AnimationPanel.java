@@ -12,11 +12,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -31,7 +27,7 @@ class AnimationPanel extends JPanel {
 
     public AnimationPanel() {
         this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.RED);
-        this.airplane = new AnimatedAirplane(-200,200, 200, 200, Color.BLUE);
+        this.airplane = new AnimatedAirplane(-200,200, 200, 200);
 
         timer.start();
     }
