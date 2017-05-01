@@ -7,6 +7,10 @@ import javax.swing.JComponent;
 
 
 public interface AnimatedShape {
+    
+    public enum Direction {
+        NORTH, SOUTH, EAST, WEST, STATIC
+    }
 
     public void update(Rectangle bounds);
 

@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -24,10 +25,17 @@ class AnimationPanel extends JPanel {
     private ArrayList<AnimatedShape> list = new ArrayList<AnimatedShape>();
     private AnimatedRectange rectangle;
     private AnimatedAirplane airplane;
+    private AnimatedAirplane airplane_WEST;
+    
+    private int screenWidth;
+    private int screenHeight;
 
     public AnimationPanel() {
-        this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.RED);
-        this.airplane = new AnimatedAirplane(-200,200, 200, 200);
+        screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+        screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+        this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.BLUE);
+        this.airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST);
+        this.airplane_WEST = new AnimatedAirplane(screenWidth, 200, 200, 200, AnimatedShape.Direction.WEST);
 
         timer.start();
     }
@@ -50,6 +58,7 @@ class AnimationPanel extends JPanel {
             }
             rectangle.update(getBounds());
             airplane.update(getBounds());
+            airplane_WEST.update(getBounds());
             repaint();
         }
     });
@@ -84,6 +93,7 @@ class AnimationPanel extends JPanel {
         }
         rectangle.paint(this, g2d);
         airplane.paint(this, g2d);
+        airplane_WEST.paint(this, g2d);
     }
 
     public void suspend() {

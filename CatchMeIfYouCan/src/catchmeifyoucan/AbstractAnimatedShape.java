@@ -13,6 +13,7 @@ public abstract class AbstractAnimatedShape implements AnimatedShape {
 
     private Rectangle bounds;
     private int dx, dy;
+    private Direction animationDirection = Direction.STATIC;
 
     public AbstractAnimatedShape() {
     }
@@ -32,6 +33,10 @@ public abstract class AbstractAnimatedShape implements AnimatedShape {
     public int getDy() {
         return dy;
     }
+    
+    public Direction getAnimationDirection() {
+        return animationDirection;
+    }
 
     public void setDx(int dx) {
         this.dx = dx;
@@ -39,6 +44,10 @@ public abstract class AbstractAnimatedShape implements AnimatedShape {
 
     public void setDy(int dy) {
         this.dy = dy;
+    }
+    
+    public void setAnimationDirection(Direction direction) {
+        this.animationDirection = direction;
     }
 
     @Override
