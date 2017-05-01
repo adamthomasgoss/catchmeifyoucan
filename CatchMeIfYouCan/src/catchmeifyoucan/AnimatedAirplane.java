@@ -17,9 +17,9 @@ class AnimatedAirplane extends AbstractAnimatedShape {
     
     private Image img;
 
-    public AnimatedAirplane(int x, int y, int width, int height, Direction planeDirection) {
+    public AnimatedAirplane(int x, int y, int width, int height, Direction planeDirection, String fileName) {
         setBounds(new Rectangle(x, y, width, height));
-        this.img = openImage().getScaledInstance(width, height, 4);
+        this.img = openImage(fileName).getScaledInstance(width, height, 4);
         this.setAnimationDirection(planeDirection);
         switch (planeDirection) {
             case WEST:
@@ -50,8 +50,8 @@ class AnimatedAirplane extends AbstractAnimatedShape {
         this.setBounds(bounds);
     }
     
-    public Image openImage () {
-        Image image = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("plane1.png"));
+    public Image openImage (String fileName) {
+        Image image = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource(fileName));
         return image;
     }
     
@@ -84,17 +84,5 @@ class AnimatedAirplane extends AbstractAnimatedShape {
             default:
                 throw new IllegalArgumentException("Unsupported airplane animation direction: " + this.getAnimationDirection());
         }
-        /**
-        if ((bounds.x + bounds.width)  < parentBounds.x) {
-            bounds.x = parentBounds.x + parentBounds.width + bufferDistance;
-            bounds.y = ThreadLocalRandom.current().nextInt(0, heightRange + 1);
-            // Reset after plane goes off Screen Left <<<
-        // ----------------------------->
-        } else if (bounds.x > parentBounds.x + parentBounds.width) {
-            bounds.x = parentBounds.x + (parentBounds.width);
-            // Reset after plane goes off Screen Right >>>
-            bounds.x = parentBounds.x - bufferDistance;
-            bounds.y = ThreadLocalRandom.current().nextInt(0, heightRange + 1);
-        }*/
     }
 }

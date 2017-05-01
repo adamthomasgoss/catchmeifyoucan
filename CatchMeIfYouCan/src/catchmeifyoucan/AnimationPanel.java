@@ -34,8 +34,8 @@ class AnimationPanel extends JPanel {
         screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
         this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.BLUE);
-        this.airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST);
-        this.airplane_WEST = new AnimatedAirplane(screenWidth, 200, 200, 200, AnimatedShape.Direction.WEST);
+        this.airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST, "plane1.png");
+        this.airplane_WEST = new AnimatedAirplane(screenWidth, 200, 355, 355, AnimatedShape.Direction.WEST, "images/plane1_700wide_left.png");
 
         timer.start();
     }
