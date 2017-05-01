@@ -17,16 +17,17 @@ class AnimatedAirplane extends AbstractAnimatedShape {
     
     private Image img;
 
-    public AnimatedAirplane(int x, int y, int width, int height, Direction planeDirection, String fileName) {
+    public AnimatedAirplane(int x, int y, int width, int height, Direction planeDirection, String fileName,
+        int speed, int buffer) {
         setBounds(new Rectangle(x, y, width, height));
         this.img = openImage(fileName).getScaledInstance(width, height, 4);
         this.setAnimationDirection(planeDirection);
         switch (planeDirection) {
             case WEST:
-                setDx(-2);
+                setDx(speed * (-1));
                 break;
             case EAST:
-                setDx(2);
+                setDx(speed);
                 break;
             default:
                 break;

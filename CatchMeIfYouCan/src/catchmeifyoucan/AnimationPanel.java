@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -23,6 +24,7 @@ class AnimationPanel extends JPanel {
     private int delay = 30;
     private int rectangleSize = 100;
     private ArrayList<AnimatedShape> list = new ArrayList<AnimatedShape>();
+    private ArrayList<AnimatedAirplane> list_airplanes = new ArrayList<AnimatedAirplane>();
     private AnimatedRectange rectangle;
     private AnimatedAirplane airplane;
     private AnimatedAirplane airplane_WEST;
@@ -34,9 +36,6 @@ class AnimationPanel extends JPanel {
         screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
         // this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.BLUE);
-        this.airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST, "images/plane1.png");
-        this.airplane_WEST = new AnimatedAirplane(screenWidth, 200, 355, 355, AnimatedShape.Direction.WEST, "images/plane1_700wide_left.png");
-
         timer.start();
     }
 
@@ -57,8 +56,9 @@ class AnimationPanel extends JPanel {
                 ball.update(getBounds());
             }
             // rectangle.update(getBounds());
-            airplane.update(getBounds());
-            airplane_WEST.update(getBounds());
+            for (AnimatedAirplane airplane : list_airplanes) {
+                airplane.update(getBounds());
+            }
             repaint();
         }
     });
@@ -84,10 +84,24 @@ class AnimationPanel extends JPanel {
     
     public void addAirplane() {
         // TODO
+        
+        int dir = ThreadLocalRandom.current().nextInt(0, 2);
+        int buffer = ThreadLocalRandom.current().nextInt(0, 500);
+        int width = ThreadLocalRandom.current().nextInt(50, 400);
+        int height = width;
+        int speed = width/40;
+        AnimatedShape.Direction direction = (dir == 0) ? AnimatedShape.Direction.EAST : AnimatedShape.Direction.WEST;
+        String imageFile = (dir == 0) ? "images/plane1.png" : "images/plane1_700wide_left.png";
+        
+        //AnimatedAirplane airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST, "images/plane1.png");
+        //AnimatedAirplane airplane_WEST = new AnimatedAirplane(screenWidth, 200, 355, 355, AnimatedShape.Direction.WEST, "images/plane1_700wide_left.png");
+        AnimatedAirplane airplane = new AnimatedAirplane(300, 300, width, height, direction, imageFile, speed, buffer);
+        
+        list_airplanes.add(airplane);
     }
     
     public void removeAirplane() {
-        
+        // TODO
     }
 
     @Override
@@ -100,8 +114,9 @@ class AnimationPanel extends JPanel {
             ball.paint(this, g2d);
         }
         // rectangle.paint(this, g2d);
-        airplane.paint(this, g2d);
-        airplane_WEST.paint(this, g2d);
+        for (AnimatedAirplane airplane  : list_airplanes) {
+            airplane.paint(this, g2d);
+        }
     }
 
     public void suspend() {
