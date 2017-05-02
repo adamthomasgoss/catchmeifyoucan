@@ -14,6 +14,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -83,23 +85,27 @@ class AnimationPanel extends JPanel {
     }
     
     public void addAirplane() {
-        // TODO
         
         int dir = ThreadLocalRandom.current().nextInt(0, 2);
         int buffer = ThreadLocalRandom.current().nextInt(0, 500);
-        int width = ThreadLocalRandom.current().nextInt(50, 400);
+        int width = ThreadLocalRandom.current().nextInt(40, 400);
         int height = width;
-        int speed = width/40;
+        int speed = width/40; // Min = 1, Max = 10 (because width is between [40, 400])
         AnimatedShape.Direction direction = (dir == 0) ? AnimatedShape.Direction.EAST : AnimatedShape.Direction.WEST;
         String imageFile = (dir == 0) ? "images/plane1.png" : "images/plane1_700wide_left.png";
         int x = (dir == 0) ? -200 : 1000;
         int y = ThreadLocalRandom.current().nextInt(0, 1000-height);
         
-        //AnimatedAirplane airplane = new AnimatedAirplane(-200, 200, 200, 200, AnimatedShape.Direction.EAST, "images/plane1.png");
-        //AnimatedAirplane airplane_WEST = new AnimatedAirplane(screenWidth, 200, 355, 355, AnimatedShape.Direction.WEST, "images/plane1_700wide_left.png");
         AnimatedAirplane airplane = new AnimatedAirplane(x, y, width, height, direction, imageFile, speed, buffer);
         
         list_airplanes.add(airplane);
+        
+        // Sort airplanes by width ascending
+        Collections.sort(list_airplanes, new Comparator<AnimatedAirplane>() {
+            @Override public int compare(AnimatedAirplane a1, AnimatedAirplane a2) {
+                return a1.width - a2.width; // Ascending
+            }
+        });
     }
     
     public void removeAirplane() {

@@ -11,7 +11,6 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.concurrent.ThreadLocalRandom;
@@ -26,11 +25,13 @@ import javax.swing.JPanel;
 class AnimatedAirplane extends AbstractAnimatedShape {
     
     private Image img;
+    public int width;
 
     public AnimatedAirplane(int x, int y, int width, int height, Direction planeDirection, String fileName,
         int speed, int buffer) {
+        this.width = width;
         setBounds(new Rectangle(x, y, width, height));
-        this.img = openImage(fileName).getScaledInstance(width, height, 4);
+        this.img = openImage(fileName, width).getScaledInstance(width, height, 4);
         this.setAnimationDirection(planeDirection);
         switch (planeDirection) {
             case WEST:
@@ -61,7 +62,7 @@ class AnimatedAirplane extends AbstractAnimatedShape {
         this.setBounds(bounds);
     }
     
-    public Image openImage (String fileName) {
+    public Image openImage (String fileName, int width) {
         // Image image = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource(fileName));
         BufferedImage image = null;
         try {
@@ -69,7 +70,11 @@ class AnimatedAirplane extends AbstractAnimatedShape {
         } catch (Exception e) {
             // TODO - handle exception
         }
-        image = dye(image, Color.RED);
+        double colorDecimal = (double)(255.0*((400.0-width)/360.0)); // between 1 and 10: 1 = light, 10 = black
+        int color = (int)colorDecimal;
+        System.out.println("COLOR = "+color + ", WIDTH = "+width);
+        Color c = new Color(color, color, color);
+        image = dye(image, c);
         return image;
     }
     
