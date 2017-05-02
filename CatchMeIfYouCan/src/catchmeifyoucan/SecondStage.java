@@ -6,6 +6,7 @@
 package catchmeifyoucan;
 
 
+import java.awt.Color;
 import java.util.Random;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -57,5 +58,5 @@ public class SecondStage {
     public void addAirplane() { ac.addAirplane(); }
     public void removeAirplane() {ac.removeAirplane(); }
     public void clearAirplanes() {ac.clearAirplanes(); }
-    public void setBackground(String color) { ac.setBackground(color); }
+    public void setBackgroundColor(Color color) { ac.setBackgroundColor(color); }
 }

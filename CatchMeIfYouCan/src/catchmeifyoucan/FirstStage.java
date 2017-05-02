@@ -34,11 +34,17 @@ public class FirstStage extends JPanel {
     private final JButton removePlane = new JButton("-1 Plane");
     private final JButton clearAirplanes = new JButton("CLEAR");
     
-    private final JButton colorRed = new JButton("Red");
-    private final JButton colorOrange = new JButton("Orange");
-    private final JButton colorYellow = new JButton("Yellow");
-    private final JButton colorGreen = new JButton("Green");
-    private final JButton colorBlue = new JButton("Blue");
+    private final JButton color1 = new JButton("Color1");
+    private final JButton color2 = new JButton("Color2");
+    private final JButton color3 = new JButton("Color3");
+    private final JButton color4 = new JButton("Color4");
+    private final JButton color5 = new JButton("Color5");
+    
+    public final Color s1_c1 = new Color(162, 250, 163);
+    public final Color s1_c2 = new Color(146, 201, 177);
+    public final Color s1_c3 = new Color(79, 117, 155);
+    public final Color s1_c4 = new Color(93, 81, 121);
+    public final Color s1_c5 = new Color(87, 37, 78);
     
     // Color Buttons
     private final JButton changeRectangleColor = new JButton("Change Rectangle Color");
@@ -121,11 +127,11 @@ public class FirstStage extends JPanel {
         jlabel4.setFont(new Font("Verdana",1,20));
         panel4.setBackground(p4color);
         panel4_south.setBackground(p4color);
-            panel4_south.add(colorRed);
-            panel4_south.add(colorOrange);
-            panel4_south.add(colorYellow);
-            panel4_south.add(colorGreen);
-            panel4_south.add(colorBlue);
+            panel4_south.add(color1);
+            panel4_south.add(color2);
+            panel4_south.add(color3);
+            panel4_south.add(color4);
+            panel4_south.add(color5);
         panel4.add(jlabel4, BorderLayout.NORTH);
         //panel4.add(AirplaneSpeed, BorderLayout.CENTER);
         panel4.add(panel4_south, BorderLayout.SOUTH);
@@ -143,11 +149,11 @@ public class FirstStage extends JPanel {
         addPlane.addActionListener(new Listener());
         removePlane.addActionListener(new Listener());
         clearAirplanes.addActionListener(new Listener());
-        colorRed.addActionListener(new Listener());
-        colorOrange.addActionListener(new Listener());
-        colorYellow.addActionListener(new Listener());
-        colorGreen.addActionListener(new Listener());
-        colorBlue.addActionListener(new Listener());
+        color1.addActionListener(new Listener());
+        color2.addActionListener(new Listener());
+        color3.addActionListener(new Listener());
+        color4.addActionListener(new Listener());
+        color5.addActionListener(new Listener());
         
         // Construct View
         ss = new SecondStage();
@@ -229,16 +235,16 @@ public class FirstStage extends JPanel {
                 ss.removeAirplane();
             } else if (e.getSource() == clearAirplanes) {
                 ss.clearAirplanes();
-            } else if (e.getSource() == colorRed) {
-                ss.setBackground("red");
-            } else if (e.getSource() == colorOrange) {
-                ss.setBackground("orange");
-            } else if (e.getSource() == colorYellow) {
-                ss.setBackground("yellow");
-            } else if (e.getSource() == colorGreen) {
-                ss.setBackground("green");
-            } else if (e.getSource() == colorBlue) {
-                ss.setBackground("blue");
+            } else if (e.getSource() == color1) {
+                ss.setBackgroundColor(s1_c1);
+            } else if (e.getSource() == color2) {
+                ss.setBackgroundColor(s1_c2);
+            } else if (e.getSource() == color3) {
+                ss.setBackgroundColor(s1_c3);
+            } else if (e.getSource() == color4) {
+                ss.setBackgroundColor(s1_c4);
+            } else if (e.getSource() == color5) {
+                ss.setBackgroundColor(s1_c5);
             }
         }
     }

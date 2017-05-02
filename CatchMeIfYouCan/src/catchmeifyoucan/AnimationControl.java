@@ -34,27 +34,7 @@ public class AnimationControl extends JPanel {
     public void addAirplane() { animationPanel.addAirplane(); }
     public void removeAirplane() { animationPanel.removeAirplane(); }
     public void clearAirplanes() { animationPanel.clearAirplanes(); }
-    public void setBackground(String color) {
-        System.out.println("Set Color To: " + color);
-        switch (color) {
-            case "red":
-                animationPanel.setBackground(Color.RED);
-                break;
-            case "orange":
-                animationPanel.setBackground(Color.ORANGE);
-                break;
-            case "yellow":
-                animationPanel.setBackground(Color.YELLOW);
-                break;
-            case "green":
-                animationPanel.setBackground(Color.GREEN);
-                break;
-            case "blue":
-                animationPanel.setBackground(Color.BLUE);
-                break;
-            default:
-                animationPanel.setBackground(Color.GRAY);
-                break;
-        }
+    public void setBackgroundColor(Color color) {
+        animationPanel.setBackground(color);
     }
 }
