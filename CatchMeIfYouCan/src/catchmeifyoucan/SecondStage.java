@@ -47,6 +47,7 @@ public class SecondStage {
     
     public void add() { ac.add(); }
     public void subtract() { ac.subtract(); }
+    public void clearBalls() { ac.clearBalls(); }
     public void suspend() { ac.suspend(); }
     public void resume() { ac.resume(); }
     public void setDelay (int delay) { ac.setDelay(delay); }
@@ -55,4 +56,5 @@ public class SecondStage {
     public void setAirplaneSpeed (int speed) { ac.setAirplaneSpeed(speed); }
     public void addAirplane() { ac.addAirplane(); }
     public void removeAirplane() {ac.removeAirplane(); }
+    public void clearAirplanes() {ac.clearAirplanes(); }
 }

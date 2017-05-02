@@ -97,6 +97,10 @@ class AnimationPanel extends JPanel {
         }
     }
     
+    public void clearBalls() {
+        list.clear();
+    }
+    
     public void addAirplane() {
         
         int dir = ThreadLocalRandom.current().nextInt(0, 2);
@@ -125,6 +129,10 @@ class AnimationPanel extends JPanel {
         if (list_airplanes.size() > 0) {
             list_airplanes.remove(list_airplanes.size() - 1); // Remove the last airplane
         }
+    }
+    
+    public void clearAirplanes() {
+        list_airplanes.clear();
     }
 
     @Override

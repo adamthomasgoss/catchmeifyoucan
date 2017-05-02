@@ -24,6 +24,7 @@ public class AnimationControl extends JPanel {
     
     public void add() { animationPanel.add(); }
     public void subtract() { animationPanel.subtract(); }
+    public void clearBalls() { animationPanel.clearBalls(); }
     public void suspend() { animationPanel.suspend(); }
     public void resume() { animationPanel.resume(); }
     public void setDelay(int delay) { animationPanel.setDelay(delay); }
@@ -32,4 +33,5 @@ public class AnimationControl extends JPanel {
     public void setAirplaneSpeed(int speed) { animationPanel.setAirplaneSpeed(speed); }
     public void addAirplane() { animationPanel.addAirplane(); }
     public void removeAirplane() { animationPanel.removeAirplane(); }
+    public void clearAirplanes() { animationPanel.clearAirplanes(); }
 }

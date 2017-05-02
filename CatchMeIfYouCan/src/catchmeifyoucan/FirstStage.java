@@ -27,10 +27,12 @@ public class FirstStage extends JPanel {
     // Motion Buttons
     private final JButton add = new JButton("+1");
     private final JButton subtract = new JButton("-1");
+    private final JButton clearBalls = new JButton("CLEAR");
     private final JButton suspend = new JButton("Suspend");
     private final JButton resume = new JButton("Resume");
     private final JButton addPlane = new JButton("+1 Plane");
     private final JButton removePlane = new JButton("-1 Plane");
+    private final JButton clearAirplanes = new JButton("CLEAR");
     
     // Color Buttons
     private final JButton changeRectangleColor = new JButton("Change Rectangle Color");
@@ -57,6 +59,7 @@ public class FirstStage extends JPanel {
             panel1_south.add(resume);
             panel1_south.add(add);
             panel1_south.add(subtract);
+            panel1_south.add(clearBalls);
         panel1.add(jlabel1, BorderLayout.NORTH);
         panel1.add(Delay, BorderLayout.CENTER);
         panel1.add(panel1_south, BorderLayout.SOUTH);
@@ -92,19 +95,23 @@ public class FirstStage extends JPanel {
         panel3_south.setBackground(p3color);
             panel3_south.add(addPlane);
             panel3_south.add(removePlane);
+            panel3_south.add(clearAirplanes);
         panel3.add(jlabel3, BorderLayout.NORTH);
         panel3.add(AirplaneSpeed, BorderLayout.CENTER);
         panel3.add(panel3_south, BorderLayout.SOUTH);
         // PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3
+        
         
         // Register listeners
         suspend.addActionListener(new Listener());
         resume.addActionListener(new Listener());
         add.addActionListener(new Listener());
         subtract.addActionListener(new Listener());
+        clearBalls.addActionListener(new Listener());
         changeRectangleColor.addActionListener(new Listener());
         addPlane.addActionListener(new Listener());
         removePlane.addActionListener(new Listener());
+        clearAirplanes.addActionListener(new Listener());
         
         // Construct View
         ss = new SecondStage();
@@ -143,11 +150,6 @@ public class FirstStage extends JPanel {
 
                 frame = new JFrame("Controller");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                // Add elements to the frame
-                //setLayout(new BorderLayout());
-                // frame.add(panel1, BorderLayout.NORTH);
-                // frame.add(panel2, BorderLayout.CENTER);
-                // frame.add(panel3, BorderLayout.SOUTH);
                 
                 // Grid Layout
                 GridLayout experimentLayout = new GridLayout(0,2);
@@ -181,12 +183,16 @@ public class FirstStage extends JPanel {
                 ss.add();
             } else if (e.getSource() == subtract) {
                 ss.subtract();
+            } else if (e.getSource() == clearBalls) {
+                ss.clearBalls();
             } else if (e.getSource() == changeRectangleColor) {
                 ss.changeRectangleColor();
             } else if (e.getSource() == addPlane) {
                 ss.addAirplane();
             } else if (e.getSource() == removePlane) {
                 ss.removeAirplane();
+            } else if (e.getSource() == clearAirplanes) {
+                ss.clearAirplanes();
             }
         }
     }
