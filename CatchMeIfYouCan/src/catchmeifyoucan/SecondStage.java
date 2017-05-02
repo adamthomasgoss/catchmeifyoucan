@@ -57,4 +57,5 @@ public class SecondStage {
     public void addAirplane() { ac.addAirplane(); }
     public void removeAirplane() {ac.removeAirplane(); }
     public void clearAirplanes() {ac.clearAirplanes(); }
+    public void setBackground(String color) { ac.setBackground(color); }
 }

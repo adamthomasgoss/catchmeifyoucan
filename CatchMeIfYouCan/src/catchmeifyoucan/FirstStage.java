@@ -34,6 +34,12 @@ public class FirstStage extends JPanel {
     private final JButton removePlane = new JButton("-1 Plane");
     private final JButton clearAirplanes = new JButton("CLEAR");
     
+    private final JButton colorRed = new JButton("Red");
+    private final JButton colorOrange = new JButton("Orange");
+    private final JButton colorYellow = new JButton("Yellow");
+    private final JButton colorGreen = new JButton("Green");
+    private final JButton colorBlue = new JButton("Blue");
+    
     // Color Buttons
     private final JButton changeRectangleColor = new JButton("Change Rectangle Color");
     
@@ -63,6 +69,7 @@ public class FirstStage extends JPanel {
         panel1.add(jlabel1, BorderLayout.NORTH);
         panel1.add(Delay, BorderLayout.CENTER);
         panel1.add(panel1_south, BorderLayout.SOUTH);
+        panel1.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
         // PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1
         
         
@@ -80,12 +87,13 @@ public class FirstStage extends JPanel {
         panel2.add(jlabel2, BorderLayout.NORTH);
         panel2.add(RectangleSize, BorderLayout.CENTER);
         panel2.add(panel2_south, BorderLayout.SOUTH);
+        panel2.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
         // PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2
         
         
         
         // PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3
-        Color p3color = Color.GREEN;
+        Color p3color = Color.LIGHT_GRAY;
         AirplaneSpeed.setOrientation(JScrollBar.HORIZONTAL);
         JLabel jlabel3 = new JLabel("Airplane Controls");
         JPanel panel3 = new JPanel(new BorderLayout());
@@ -99,7 +107,30 @@ public class FirstStage extends JPanel {
         panel3.add(jlabel3, BorderLayout.NORTH);
         panel3.add(AirplaneSpeed, BorderLayout.CENTER);
         panel3.add(panel3_south, BorderLayout.SOUTH);
+        panel3.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
         // PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3
+        
+             
+        
+        // PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4
+        Color p4color = Color.GRAY;
+        // AirplaneSpeed.setOrientation(JScrollBar.HORIZONTAL);
+        JLabel jlabel4 = new JLabel("Background Color");
+        JPanel panel4 = new JPanel(new BorderLayout());
+        JPanel panel4_south = new JPanel();
+        jlabel4.setFont(new Font("Verdana",1,20));
+        panel4.setBackground(p4color);
+        panel4_south.setBackground(p4color);
+            panel4_south.add(colorRed);
+            panel4_south.add(colorOrange);
+            panel4_south.add(colorYellow);
+            panel4_south.add(colorGreen);
+            panel4_south.add(colorBlue);
+        panel4.add(jlabel4, BorderLayout.NORTH);
+        //panel4.add(AirplaneSpeed, BorderLayout.CENTER);
+        panel4.add(panel4_south, BorderLayout.SOUTH);
+        panel4.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
+        // PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4
         
         
         // Register listeners
@@ -112,6 +143,11 @@ public class FirstStage extends JPanel {
         addPlane.addActionListener(new Listener());
         removePlane.addActionListener(new Listener());
         clearAirplanes.addActionListener(new Listener());
+        colorRed.addActionListener(new Listener());
+        colorOrange.addActionListener(new Listener());
+        colorYellow.addActionListener(new Listener());
+        colorGreen.addActionListener(new Listener());
+        colorBlue.addActionListener(new Listener());
         
         // Construct View
         ss = new SecondStage();
@@ -154,16 +190,16 @@ public class FirstStage extends JPanel {
                 // Grid Layout
                 GridLayout experimentLayout = new GridLayout(0,2);
 
-                JPanel panel4 = new JPanel();
-                panel4.setLayout(experimentLayout);
+                JPanel panelG = new JPanel();
+                panelG.setLayout(experimentLayout);
 
-                panel4.add(panel1);
-                panel4.add(panel2);
-                panel4.add(panel3);
-                panel4.add(new JButton("Long-Named Button 4"));
-                panel4.add(new JButton("5"));
+                panelG.add(panel1);
+                panelG.add(panel2);
+                panelG.add(panel3);
+                panelG.add(panel4);
+                panelG.add(new JButton("5"));
                 
-                frame.add(panel4);
+                frame.add(panelG);
                 
                 frame.pack();
                 frame.setLocationRelativeTo(null);
@@ -193,6 +229,16 @@ public class FirstStage extends JPanel {
                 ss.removeAirplane();
             } else if (e.getSource() == clearAirplanes) {
                 ss.clearAirplanes();
+            } else if (e.getSource() == colorRed) {
+                ss.setBackground("red");
+            } else if (e.getSource() == colorOrange) {
+                ss.setBackground("orange");
+            } else if (e.getSource() == colorYellow) {
+                ss.setBackground("yellow");
+            } else if (e.getSource() == colorGreen) {
+                ss.setBackground("green");
+            } else if (e.getSource() == colorBlue) {
+                ss.setBackground("blue");
             }
         }
     }
