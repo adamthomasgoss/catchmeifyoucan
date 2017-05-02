@@ -158,12 +158,11 @@ class AnimationPanel extends JPanel {
         int width = ThreadLocalRandom.current().nextInt(40, 400);
         int height = width;
         int speed = width/40; // Min = 1, Max = 10 (because width is between [40, 400])
-        AnimatedShape.Direction direction = (dir == 0) ? AnimatedShape.Direction.EAST : AnimatedShape.Direction.WEST;
-        String imageFile = (dir == 0) ? "images/luggage1_700wide.png" : "images/plane1_700wide_left.png";
+        AnimatedShape.Direction direction = (dir == 0) ? AnimatedShape.Direction.NORTH : AnimatedShape.Direction.SOUTH;
+        String imageFile = (dir == 0) ? "images/luggage1_700wide.png" : "images/luggagetag1_400wide.png";
         int x = ThreadLocalRandom.current().nextInt(-200, 2120);
         int y = ThreadLocalRandom.current().nextInt(0, 1080-height);
         
-        System.out.println("Add Luggage");
         AnimatedLuggage luggage = new AnimatedLuggage(x, y, width, height, direction, imageFile, speed, buffer);
         list_luggage.add(luggage);
         // TODO: sort (if we need to)

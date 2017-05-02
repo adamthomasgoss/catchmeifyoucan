@@ -34,20 +34,20 @@ class AnimatedLuggage extends AbstractAnimatedShape {
         this.img = openImage(fileName, width).getScaledInstance(width, height, 4);
         this.setAnimationDirection(luggageDirection);
         switch (luggageDirection) {
-            case WEST:
-                setDx(speed * (-1));
+            case NORTH:
+                setDy(speed * (-1));
                 break;
-            case EAST:
-                setDx(speed);
+            case SOUTH:
+                setDy(speed);
                 break;
             default:
                 break;
         }
     }
 
-    // Don't want to adjust the vertical speed
+    // Don't want to adjust the horizontal speed
     @Override
-    public void setDy(int dy) {
+    public void setDx(int dx) {
     }
 
     @Override
@@ -84,24 +84,24 @@ class AnimatedLuggage extends AbstractAnimatedShape {
         Rectangle bounds = getBounds();
         int dx = getDx();
         int dy = getDy();
-        int heightRange = parentBounds.height - bounds.height;
+        int widthRange = parentBounds.width - bounds.width;
         int bufferDistance = 300;
         bounds.x += dx;
         bounds.y += dy;
         // <-----------------------------
         switch (this.getAnimationDirection()) {
-            case WEST:
-                if ((bounds.x + bounds.width)  < parentBounds.x) {
+            case NORTH:
+                if ((bounds.y + bounds.height)  < parentBounds.y) {
                     // Reset after luggage goes off Screen Left <<<
-                    bounds.x = parentBounds.x + parentBounds.width + bufferDistance;
-                    bounds.y = ThreadLocalRandom.current().nextInt(0, heightRange + 1);
+                    bounds.y = parentBounds.y + parentBounds.width + bufferDistance;
+                    bounds.x = ThreadLocalRandom.current().nextInt(0, widthRange + 1);
                 }
                 break;
-            case EAST:
-                if (bounds.x > parentBounds.x + parentBounds.width) {
+            case SOUTH:
+                if (bounds.y > parentBounds.y + parentBounds.height) {
                     // Reset after luggage goes off Screen Right >>>
-                    bounds.x = parentBounds.x - bufferDistance;
-                    bounds.y = ThreadLocalRandom.current().nextInt(0, heightRange + 1);
+                    bounds.y = parentBounds.y - bufferDistance;
+                    bounds.x = ThreadLocalRandom.current().nextInt(0, widthRange + 1);
                 }
                 break;
             default:
