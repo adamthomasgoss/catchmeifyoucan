@@ -55,8 +55,12 @@ public class SecondStage {
     public void changeRectangleColor() { ac.changeRectangleColor(); }
     public void setRectangleSize (int size) { ac.setRectangleSize(size); }
     public void setAirplaneSpeed (int speed) { ac.setAirplaneSpeed(speed); }
+    public void setLuggageSpeed (int speed) { ac.setLuggageSpeed(speed); }
     public void addAirplane() { ac.addAirplane(); }
     public void removeAirplane() {ac.removeAirplane(); }
     public void clearAirplanes() {ac.clearAirplanes(); }
+    public void addLuggage() { ac.addLuggage(); }
+    public void removeLuggage() {ac.removeLuggage(); }
+    public void clearLuggage() {ac.clearLuggage(); }
     public void setBackgroundColor(Color color) { ac.setBackgroundColor(color); }
 }

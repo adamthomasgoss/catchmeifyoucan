@@ -33,6 +33,9 @@ public class FirstStage extends JPanel {
     private final JButton addPlane = new JButton("+1 Plane");
     private final JButton removePlane = new JButton("-1 Plane");
     private final JButton clearAirplanes = new JButton("CLEAR");
+    private final JButton addLuggage = new JButton("+1 Luggage");
+    private final JButton removeLuggage = new JButton("-1 Luggage");
+    private final JButton clearLuggage = new JButton("CLEAR");
     
     private final JButton color1 = new JButton("Color1");
     private final JButton color2 = new JButton("Color2");
@@ -51,8 +54,9 @@ public class FirstStage extends JPanel {
     
     // Other Controls
     private JScrollBar Delay = new JScrollBar();
-    private JScrollBar AirplaneSpeed = new JScrollBar();
     private JScrollBar RectangleSize = new JScrollBar();
+    private JScrollBar AirplaneSpeed = new JScrollBar();
+    private JScrollBar LuggageSpeed = new JScrollBar();
     private SecondStage ss;
     private JFrame frame;
 
@@ -127,6 +131,16 @@ public class FirstStage extends JPanel {
         jlabel4.setFont(new Font("Verdana",1,20));
         panel4.setBackground(p4color);
         panel4_south.setBackground(p4color);
+            color1.setBackground(s1_c1); 
+            color1.setOpaque(true);
+            color2.setBackground(s1_c2); 
+            color2.setOpaque(true);
+            color3.setBackground(s1_c3); 
+            color3.setOpaque(true);
+            color4.setBackground(s1_c4); 
+            color4.setOpaque(true);
+            color5.setBackground(s1_c5); 
+            color5.setOpaque(true);
             panel4_south.add(color1);
             panel4_south.add(color2);
             panel4_south.add(color3);
@@ -139,6 +153,26 @@ public class FirstStage extends JPanel {
         // PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4 PANEL4
         
         
+        
+        // PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5
+        Color p5color = Color.GRAY;
+        LuggageSpeed.setOrientation(JScrollBar.HORIZONTAL);
+        JLabel jlabel5 = new JLabel("Luggage Controls");
+        JPanel panel5 = new JPanel(new BorderLayout());
+        JPanel panel5_south = new JPanel();
+        jlabel5.setFont(new Font("Verdana",1,20));
+        panel5.setBackground(p5color);
+        panel5_south.setBackground(p5color);
+            panel5_south.add(addLuggage);
+            panel5_south.add(removeLuggage);
+            panel5_south.add(clearLuggage);
+        panel5.add(jlabel5, BorderLayout.NORTH);
+        panel5.add(LuggageSpeed, BorderLayout.CENTER);
+        panel5.add(panel5_south, BorderLayout.SOUTH);
+        panel5.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
+        // PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5
+        
+        
         // Register listeners
         suspend.addActionListener(new Listener());
         resume.addActionListener(new Listener());
@@ -149,6 +183,9 @@ public class FirstStage extends JPanel {
         addPlane.addActionListener(new Listener());
         removePlane.addActionListener(new Listener());
         clearAirplanes.addActionListener(new Listener());
+        addLuggage.addActionListener(new Listener());
+        removeLuggage.addActionListener(new Listener());
+        clearLuggage.addActionListener(new Listener());
         color1.addActionListener(new Listener());
         color2.addActionListener(new Listener());
         color3.addActionListener(new Listener());
@@ -162,6 +199,7 @@ public class FirstStage extends JPanel {
         ss.setDelay(Delay.getMaximum());
         ss.setRectangleSize(RectangleSize.getMaximum());
         ss.setAirplaneSpeed(AirplaneSpeed.getMaximum());
+        ss.setLuggageSpeed(LuggageSpeed.getMaximum());
         
         Delay.addAdjustmentListener(new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -178,6 +216,12 @@ public class FirstStage extends JPanel {
         AirplaneSpeed.addAdjustmentListener(new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 ss.setAirplaneSpeed(AirplaneSpeed.getMaximum() - e.getValue());
+            }
+        });
+        
+        LuggageSpeed.addAdjustmentListener(new AdjustmentListener() {
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                ss.setLuggageSpeed(LuggageSpeed.getMaximum() - e.getValue());
             }
         });
         
@@ -203,7 +247,7 @@ public class FirstStage extends JPanel {
                 panelG.add(panel2);
                 panelG.add(panel3);
                 panelG.add(panel4);
-                panelG.add(new JButton("5"));
+                panelG.add(panel5);
                 
                 frame.add(panelG);
                 
@@ -235,6 +279,12 @@ public class FirstStage extends JPanel {
                 ss.removeAirplane();
             } else if (e.getSource() == clearAirplanes) {
                 ss.clearAirplanes();
+            } else if (e.getSource() == addLuggage) {
+                ss.addLuggage();
+            } else if (e.getSource() == removeLuggage) {
+                ss.removeLuggage();
+            } else if (e.getSource() == clearLuggage) {
+                ss.clearLuggage();
             } else if (e.getSource() == color1) {
                 ss.setBackgroundColor(s1_c1);
             } else if (e.getSource() == color2) {

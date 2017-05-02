@@ -31,9 +31,13 @@ public class AnimationControl extends JPanel {
     public void changeRectangleColor() { animationPanel.changeRectangleColor(); }
     public void setRectangleSize(int size) { animationPanel.setRectangleSize(size); }
     public void setAirplaneSpeed(int speed) { animationPanel.setAirplaneSpeed(speed); }
+    public void setLuggageSpeed(int speed) { animationPanel.setLuggageSpeed(speed); }
     public void addAirplane() { animationPanel.addAirplane(); }
     public void removeAirplane() { animationPanel.removeAirplane(); }
     public void clearAirplanes() { animationPanel.clearAirplanes(); }
+    public void addLuggage() { animationPanel.addLuggage(); }
+    public void removeLuggage() { animationPanel.removeLuggage(); }
+    public void clearLuggage() { animationPanel.clearLuggage(); }
     public void setBackgroundColor(Color color) {
         animationPanel.setBackground(color);
     }

@@ -25,12 +25,12 @@ class AnimationPanel extends JPanel {
 
     private int delay = 30;
     private int delayAirplane = 30;
+    private int delayLuggage = 30;
     private int rectangleSize = 100;
     private ArrayList<AnimatedShape> list = new ArrayList<AnimatedShape>();
     private ArrayList<AnimatedAirplane> list_airplanes = new ArrayList<AnimatedAirplane>();
+    private ArrayList<AnimatedLuggage> list_luggage = new ArrayList<AnimatedLuggage>();
     private AnimatedRectange rectangle;
-    private AnimatedAirplane airplane;
-    private AnimatedAirplane airplane_WEST;
     
     private int screenWidth;
     private int screenHeight;
@@ -41,6 +41,7 @@ class AnimationPanel extends JPanel {
         // this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.BLUE);
         timer.start();
         airplaneTimer.start();
+        luggageTimer.start();
     }
 
     @Override
@@ -64,7 +65,7 @@ class AnimationPanel extends JPanel {
     });
     
     // Create a timer with the initial delay
-    // Add everything to the timer getBounds()
+    // Add airplanes to the timer getBounds()
     protected Timer airplaneTimer = new Timer(delayAirplane, new ActionListener() {
         /**
          * Handle the action event
@@ -73,6 +74,21 @@ class AnimationPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             for (AnimatedAirplane airplane : list_airplanes) {
                 airplane.update(getBounds());
+            }
+            repaint();
+        }
+    });
+    
+    // Create a timer with the initial delay
+    // Add luggage to the timer getBounds()
+    protected Timer luggageTimer = new Timer(delayLuggage, new ActionListener() {
+        /**
+         * Handle the action event
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            for (AnimatedLuggage luggage : list_luggage) {
+                luggage.update(getBounds());
             }
             repaint();
         }
@@ -134,6 +150,34 @@ class AnimationPanel extends JPanel {
     public void clearAirplanes() {
         list_airplanes.clear();
     }
+    
+    public void addLuggage() {
+        
+        int dir = ThreadLocalRandom.current().nextInt(0, 2);
+        int buffer = ThreadLocalRandom.current().nextInt(0, 500);
+        int width = ThreadLocalRandom.current().nextInt(40, 400);
+        int height = width;
+        int speed = width/40; // Min = 1, Max = 10 (because width is between [40, 400])
+        AnimatedShape.Direction direction = (dir == 0) ? AnimatedShape.Direction.EAST : AnimatedShape.Direction.WEST;
+        String imageFile = (dir == 0) ? "images/luggage1_700wide.png" : "images/plane1_700wide_left.png";
+        int x = ThreadLocalRandom.current().nextInt(-200, 2120);
+        int y = ThreadLocalRandom.current().nextInt(0, 1080-height);
+        
+        System.out.println("Add Luggage");
+        AnimatedLuggage luggage = new AnimatedLuggage(x, y, width, height, direction, imageFile, speed, buffer);
+        list_luggage.add(luggage);
+        // TODO: sort (if we need to)
+    }
+    
+    public void removeLuggage() {
+        if (list_luggage.size() > 0) {
+            list_luggage.remove(list_luggage.size() - 1); // Remove the last luggage
+        }
+    }
+    
+    public void clearLuggage() {
+        list_luggage.clear();
+    }
 
     @Override
     // Paint the objects in the scene
@@ -147,6 +191,9 @@ class AnimationPanel extends JPanel {
         // rectangle.paint(this, g2d);
         for (AnimatedAirplane airplane  : list_airplanes) {
             airplane.paint(this, g2d);
+        }
+        for (AnimatedLuggage luggage  : list_luggage) {
+            luggage.paint(this, g2d);
         }
     }
 
@@ -174,5 +221,10 @@ class AnimationPanel extends JPanel {
     public void setAirplaneSpeed(int speed){
         this.delayAirplane = speed;
         airplaneTimer.setDelay(speed);
+    }
+    
+    public void setLuggageSpeed(int speed){
+        this.delayLuggage = speed;
+        luggageTimer.setDelay(speed);
     }
 }
