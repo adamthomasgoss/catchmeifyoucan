@@ -52,6 +52,7 @@ public class SecondStage {
     public void setDelay (int delay) { ac.setDelay(delay); }
     public void changeRectangleColor() { ac.changeRectangleColor(); }
     public void setRectangleSize (int size) { ac.setRectangleSize(size); }
+    public void setAirplaneSpeed (int speed) { ac.setAirplaneSpeed(speed); }
     public void addAirplane() { ac.addAirplane(); }
     public void removeAirplane() {ac.removeAirplane(); }
 }

@@ -9,12 +9,14 @@ package catchmeifyoucan;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.UIManager;
@@ -35,29 +37,61 @@ public class FirstStage extends JPanel {
     
     // Other Controls
     private JScrollBar Delay = new JScrollBar();
+    private JScrollBar AirplaneSpeed = new JScrollBar();
     private JScrollBar RectangleSize = new JScrollBar();
     private SecondStage ss;
     private JFrame frame;
 
     FirstStage() {
         
-        JPanel panel1 = new JPanel();
-        panel1.setBackground(Color.GRAY);
-        panel1.add(Delay, BorderLayout.NORTH);
-        panel1.add(suspend);
-        panel1.add(resume);
-        panel1.add(add);
-        panel1.add(subtract);
+        // PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1
+        Color p1color = Color.GRAY;
+        Delay.setOrientation(JScrollBar.HORIZONTAL);
+        JLabel jlabel1 = new JLabel("Ball Controls");
+        JPanel panel1 = new JPanel(new BorderLayout());
+        JPanel panel1_south = new JPanel();
+        jlabel1.setFont(new Font("Verdana",1,20));
+        panel1.setBackground(p1color);
+        panel1_south.setBackground(p1color);
+            panel1_south.add(suspend);
+            panel1_south.add(resume);
+            panel1_south.add(add);
+            panel1_south.add(subtract);
+        panel1.add(jlabel1, BorderLayout.NORTH);
+        panel1.add(Delay, BorderLayout.CENTER);
+        panel1.add(panel1_south, BorderLayout.SOUTH);
+        // PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1
         
-        JPanel panel2 = new JPanel();
-        setLayout(new BorderLayout());
-        panel2.add(RectangleSize, BorderLayout.NORTH);
+        
+        
+        // PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2
+        Color p2color = Color.LIGHT_GRAY;
+        RectangleSize.setOrientation(JScrollBar.HORIZONTAL);
+        JLabel jlabel2 = new JLabel("Rectangle Controls");
+        JPanel panel2 = new JPanel(new BorderLayout());
+        jlabel2.setFont(new Font("Verdana",1,20));
+        panel2.setBackground(p2color);
+        panel2.add(jlabel2, BorderLayout.NORTH);
+        panel2.add(RectangleSize, BorderLayout.CENTER);
         panel2.add(changeRectangleColor, BorderLayout.SOUTH);
+        // PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2
         
-        JPanel panel3 = new JPanel();
-        setLayout(new BorderLayout());
-        panel3.add(addPlane);
-        panel3.add(removePlane);
+        
+        
+        // PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3
+        Color p3color = Color.GREEN;
+        AirplaneSpeed.setOrientation(JScrollBar.HORIZONTAL);
+        JLabel jlabel3 = new JLabel("Airplane Controls");
+        JPanel panel3 = new JPanel(new BorderLayout());
+        JPanel panel3_south = new JPanel();
+        jlabel3.setFont(new Font("Verdana",1,20));
+        panel3.setBackground(p3color);
+            panel3_south.add(addPlane);
+            panel3_south.add(removePlane);
+        panel3.add(jlabel3, BorderLayout.NORTH);
+        panel3.add(AirplaneSpeed, BorderLayout.CENTER);
+        panel3.add(panel3_south, BorderLayout.SOUTH);
+        // PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3 PANEL3
         
         // Register listeners
         suspend.addActionListener(new Listener());
@@ -72,10 +106,9 @@ public class FirstStage extends JPanel {
         ss = new SecondStage();
         
         // Layout Control Panel
-        Delay.setOrientation(JScrollBar.HORIZONTAL);
         ss.setDelay(Delay.getMaximum());
-        RectangleSize.setOrientation(JScrollBar.HORIZONTAL);
         ss.setRectangleSize(RectangleSize.getMaximum());
+        ss.setAirplaneSpeed(AirplaneSpeed.getMaximum());
         
         Delay.addAdjustmentListener(new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -86,6 +119,12 @@ public class FirstStage extends JPanel {
         RectangleSize.addAdjustmentListener(new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 ss.setRectangleSize(RectangleSize.getMaximum() - e.getValue());
+            }
+        });
+        
+        AirplaneSpeed.addAdjustmentListener(new AdjustmentListener() {
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                ss.setAirplaneSpeed(AirplaneSpeed.getMaximum() - e.getValue());
             }
         });
         

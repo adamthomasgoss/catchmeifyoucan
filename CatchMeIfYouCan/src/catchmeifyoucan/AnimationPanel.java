@@ -24,6 +24,7 @@ import javax.swing.Timer;
 class AnimationPanel extends JPanel {
 
     private int delay = 30;
+    private int delayAirplane = 30;
     private int rectangleSize = 100;
     private ArrayList<AnimatedShape> list = new ArrayList<AnimatedShape>();
     private ArrayList<AnimatedAirplane> list_airplanes = new ArrayList<AnimatedAirplane>();
@@ -39,6 +40,7 @@ class AnimationPanel extends JPanel {
         screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
         // this.rectangle = new AnimatedRectange(-25, 200, 50, 25, Color.BLUE);
         timer.start();
+        airplaneTimer.start();
     }
 
     @Override
@@ -57,7 +59,18 @@ class AnimationPanel extends JPanel {
             for (AnimatedShape ball : list) {
                 ball.update(getBounds());
             }
-            // rectangle.update(getBounds());
+            repaint();
+        }
+    });
+    
+    // Create a timer with the initial delay
+    // Add everything to the timer getBounds()
+    protected Timer airplaneTimer = new Timer(delayAirplane, new ActionListener() {
+        /**
+         * Handle the action event
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
             for (AnimatedAirplane airplane : list_airplanes) {
                 airplane.update(getBounds());
             }
@@ -148,5 +161,10 @@ class AnimationPanel extends JPanel {
     
     public void setRectangleSize(int size) {
         // rectangle.setSize(size);
+    }
+    
+    public void setAirplaneSpeed(int speed){
+        this.delayAirplane = speed;
+        airplaneTimer.setDelay(speed);
     }
 }

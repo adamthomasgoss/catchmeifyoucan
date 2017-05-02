@@ -29,6 +29,7 @@ public class AnimationControl extends JPanel {
     public void setDelay(int delay) { animationPanel.setDelay(delay); }
     public void changeRectangleColor() { animationPanel.changeRectangleColor(); }
     public void setRectangleSize(int size) { animationPanel.setRectangleSize(size); }
+    public void setAirplaneSpeed(int speed) { animationPanel.setAirplaneSpeed(speed); }
     public void addAirplane() { animationPanel.addAirplane(); }
     public void removeAirplane() { animationPanel.removeAirplane(); }
 }
