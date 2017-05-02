@@ -9,6 +9,7 @@ package catchmeifyoucan;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
@@ -100,11 +101,24 @@ public class FirstStage extends JPanel {
                 frame = new JFrame("Controller");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 // Add elements to the frame
-                setLayout(new BorderLayout());
+                //setLayout(new BorderLayout());
+                // frame.add(panel1, BorderLayout.NORTH);
+                // frame.add(panel2, BorderLayout.CENTER);
+                // frame.add(panel3, BorderLayout.SOUTH);
                 
-                frame.add(panel1, BorderLayout.NORTH);
-                frame.add(panel2, BorderLayout.CENTER);
-                frame.add(panel3, BorderLayout.SOUTH);
+                // Grid Layout
+                GridLayout experimentLayout = new GridLayout(0,2);
+
+                JPanel panel4 = new JPanel();
+                panel4.setLayout(experimentLayout);
+
+                panel4.add(panel1);
+                panel4.add(panel2);
+                panel4.add(panel3);
+                panel4.add(new JButton("Long-Named Button 4"));
+                panel4.add(new JButton("5"));
+                
+                frame.add(panel4);
                 
                 frame.pack();
                 frame.setLocationRelativeTo(null);
