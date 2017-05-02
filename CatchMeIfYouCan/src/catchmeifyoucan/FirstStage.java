@@ -69,11 +69,14 @@ public class FirstStage extends JPanel {
         RectangleSize.setOrientation(JScrollBar.HORIZONTAL);
         JLabel jlabel2 = new JLabel("Rectangle Controls");
         JPanel panel2 = new JPanel(new BorderLayout());
+        JPanel panel2_south = new JPanel();
         jlabel2.setFont(new Font("Verdana",1,20));
         panel2.setBackground(p2color);
+        panel2_south.setBackground(p2color);
+            panel2_south.add(changeRectangleColor);
         panel2.add(jlabel2, BorderLayout.NORTH);
         panel2.add(RectangleSize, BorderLayout.CENTER);
-        panel2.add(changeRectangleColor, BorderLayout.SOUTH);
+        panel2.add(panel2_south, BorderLayout.SOUTH);
         // PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2 PANEL2
         
         
@@ -86,6 +89,7 @@ public class FirstStage extends JPanel {
         JPanel panel3_south = new JPanel();
         jlabel3.setFont(new Font("Verdana",1,20));
         panel3.setBackground(p3color);
+        panel3_south.setBackground(p3color);
             panel3_south.add(addPlane);
             panel3_south.add(removePlane);
         panel3.add(jlabel3, BorderLayout.NORTH);
