@@ -93,8 +93,8 @@ class AnimationPanel extends JPanel {
         int speed = width/40; // Min = 1, Max = 10 (because width is between [40, 400])
         AnimatedShape.Direction direction = (dir == 0) ? AnimatedShape.Direction.EAST : AnimatedShape.Direction.WEST;
         String imageFile = (dir == 0) ? "images/plane1.png" : "images/plane1_700wide_left.png";
-        int x = (dir == 0) ? -200 : 1000;
-        int y = ThreadLocalRandom.current().nextInt(0, 1000-height);
+        int x = ThreadLocalRandom.current().nextInt(-200, 2120);
+        int y = ThreadLocalRandom.current().nextInt(0, 1080-height);
         
         AnimatedAirplane airplane = new AnimatedAirplane(x, y, width, height, direction, imageFile, speed, buffer);
         
