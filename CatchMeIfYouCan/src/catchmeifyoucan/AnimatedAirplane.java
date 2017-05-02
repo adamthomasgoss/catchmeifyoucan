@@ -5,12 +5,22 @@
  */
 package catchmeifyoucan;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
 class AnimatedAirplane extends AbstractAnimatedShape {
@@ -52,7 +62,14 @@ class AnimatedAirplane extends AbstractAnimatedShape {
     }
     
     public Image openImage (String fileName) {
-        Image image = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource(fileName));
+        // Image image = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource(fileName));
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(AnimatedAirplane.class.getResourceAsStream(fileName));
+        } catch (Exception e) {
+            // TODO - handle exception
+        }
+        image = dye(image, Color.RED);
         return image;
     }
     
@@ -85,5 +102,39 @@ class AnimatedAirplane extends AbstractAnimatedShape {
             default:
                 throw new IllegalArgumentException("Unsupported airplane animation direction: " + this.getAnimationDirection());
         }
+    }
+    
+    // MARK: Image dyeing 
+    
+    public void DyeImage() throws Exception
+    {
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        BufferedImage image = ImageIO.read(new File("DRVpH.png"));
+        JPanel panel = new JPanel(new GridLayout(1,0));
+        panel.add(new JLabel(new ImageIcon(image)));
+        panel.add(new JLabel(new ImageIcon(dye(image, new Color(255,0,0,128)))));
+        panel.add(new JLabel(new ImageIcon(dye(image, new Color(255,0,0,32)))));
+        panel.add(new JLabel(new ImageIcon(dye(image, new Color(0,128,0,32)))));
+        panel.add(new JLabel(new ImageIcon(dye(image, new Color(0,0,255,32)))));
+        f.getContentPane().add(panel);
+        f.pack();
+        f.setVisible(true);
+    }
+
+
+    private static BufferedImage dye(BufferedImage image, Color color)
+    {
+        int w = image.getWidth();
+        int h = image.getHeight();
+        BufferedImage dyed = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = dyed.createGraphics();
+        g.drawImage(image, 0,0, null);
+        g.setComposite(AlphaComposite.SrcAtop);
+        g.setColor(color);
+        g.fillRect(0,0,w,h);
+        g.dispose();
+        return dyed;
     }
 }
