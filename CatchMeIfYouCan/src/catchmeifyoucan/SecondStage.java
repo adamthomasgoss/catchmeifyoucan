@@ -62,5 +62,8 @@ public class SecondStage {
     public void addLuggage() { ac.addLuggage(); }
     public void removeLuggage() {ac.removeLuggage(); }
     public void clearLuggage() {ac.clearLuggage(); }
+    public void initScene1() {ac.initScene1(); }
+    public void initScene2() {ac.initScene2(); }
+    public void hideAllRoyalty() {ac.hideAllRoyalty(); }
     public void setBackgroundColor(Color color) { ac.setBackgroundColor(color); }
 }

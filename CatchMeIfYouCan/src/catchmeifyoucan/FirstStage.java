@@ -23,6 +23,12 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class FirstStage extends JPanel {
+    
+    // Candidates
+    private final String promQueen = "Prom Queen - Rece Legg";
+    private final String promKing = "Prom King - Johnny Sanchez";
+    private final String promPrince = "Prom Prince - Indigo Schultz";
+    private final String promPrincess = "Prom Princess - Elicia Azua";
 
     // Motion Buttons
     private final JButton add = new JButton("+1");
@@ -36,6 +42,8 @@ public class FirstStage extends JPanel {
     private final JButton addLuggage = new JButton("+1 Luggage");
     private final JButton removeLuggage = new JButton("-1 Luggage");
     private final JButton clearLuggage = new JButton("CLEAR");
+    private final JButton scene1 = new JButton("<<< VISUALS");
+    private final JButton scene2 = new JButton("ROYALTY BOARD >>>");
     
     private final JButton color1 = new JButton("Color1");
     private final JButton color2 = new JButton("Color2");
@@ -59,8 +67,21 @@ public class FirstStage extends JPanel {
     private JScrollBar LuggageSpeed = new JScrollBar();
     private SecondStage ss;
     private JFrame frame;
+    private int currentScene = 1;
 
     FirstStage() {
+        
+        JPanel panela = new JPanel(new BorderLayout());
+        panela.setBackground(Color.WHITE);
+        panela.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
+        
+        JPanel panelb = new JPanel(new BorderLayout());
+        panelb.setBackground(Color.WHITE);
+        panelb.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
+        
+        JPanel panelc = new JPanel(new BorderLayout());
+        panelc.setBackground(Color.WHITE);
+        panelc.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
         
         // PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1 PANEL1
         Color p1color = Color.GRAY;
@@ -173,6 +194,25 @@ public class FirstStage extends JPanel {
         // PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5 PANEL5
         
         
+        
+        
+        // PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6
+        Color p6color = Color.LIGHT_GRAY;
+        JLabel jlabel6 = new JLabel("Scene Controls");
+        JPanel panel6 = new JPanel(new BorderLayout());
+        JPanel panel6_south = new JPanel();
+        jlabel6.setFont(new Font("Verdana",1,20));
+        panel6.setBackground(p6color);
+        panel6_south.setBackground(p6color);
+            panel6_south.add(scene1);
+            panel6_south.add(scene2);
+        panel6.add(jlabel6, BorderLayout.NORTH);
+        // panel6.add(LuggageSpeed, BorderLayout.CENTER);
+        panel6.add(panel6_south, BorderLayout.SOUTH);
+        panel6.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
+        // PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6
+        
+        
         // Register listeners
         suspend.addActionListener(new Listener());
         resume.addActionListener(new Listener());
@@ -186,6 +226,8 @@ public class FirstStage extends JPanel {
         addLuggage.addActionListener(new Listener());
         removeLuggage.addActionListener(new Listener());
         clearLuggage.addActionListener(new Listener());
+        scene1.addActionListener(new Listener());
+        scene2.addActionListener(new Listener());
         color1.addActionListener(new Listener());
         color2.addActionListener(new Listener());
         color3.addActionListener(new Listener());
@@ -243,11 +285,10 @@ public class FirstStage extends JPanel {
                 JPanel panelG = new JPanel();
                 panelG.setLayout(experimentLayout);
 
-                panelG.add(panel1);
-                panelG.add(panel2);
-                panelG.add(panel3);
-                panelG.add(panel4);
-                panelG.add(panel5);
+                panelG.add(panel1);     panelG.add(panel6);
+                panelG.add(panel3);     panelG.add(panela);
+                panelG.add(panel4);     panelG.add(panelb);
+                panelG.add(panel5);     panelG.add(panelc);
                 
                 frame.add(panelG);
                 
@@ -285,6 +326,15 @@ public class FirstStage extends JPanel {
                 ss.removeLuggage();
             } else if (e.getSource() == clearLuggage) {
                 ss.clearLuggage();
+            } else if (e.getSource() == scene1) {
+                // CHANGE TO SCENE 1
+                currentScene = 1;
+                ss.initScene1();
+            } else if (e.getSource() == scene2) {
+                // CHANGE TO SCENE 2
+                currentScene = 2;
+                ss.hideAllRoyalty();
+                ss.initScene2();
             } else if (e.getSource() == color1) {
                 ss.setBackgroundColor(s1_c1);
             } else if (e.getSource() == color2) {
