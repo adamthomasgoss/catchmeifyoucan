@@ -69,4 +69,12 @@ public class AnimationControl extends JPanel {
     public void showAllRoyalty() {
         animationPanel2.showAllRoyalty();
     }
+    public void showKing() { animationPanel2.showKing(); }
+    public void showQueen() { animationPanel2.showQueen(); }
+    public void showPrince() { animationPanel2.showPrince(); }
+    public void showPrincess() { animationPanel2.showPrincess(); }
+    public void hideKing() { animationPanel2.hideKing(); }
+    public void hideQueen() { animationPanel2.hideQueen(); }
+    public void hidePrince() { animationPanel2.hidePrince(); }
+    public void hidePrincess() { animationPanel2.hidePrincess(); }
 }

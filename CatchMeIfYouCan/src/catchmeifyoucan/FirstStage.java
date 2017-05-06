@@ -44,6 +44,14 @@ public class FirstStage extends JPanel {
     private final JButton clearLuggage = new JButton("CLEAR");
     private final JButton scene1 = new JButton("<<< VISUALS");
     private final JButton scene2 = new JButton("ROYALTY BOARD >>>");
+    private final JButton showKing = new JButton("KING");
+    private final JButton showQueen = new JButton("QUEEN");
+    private final JButton showPrince = new JButton("PRINCE");
+    private final JButton showPrincess = new JButton("PRINCESS");
+    private final JButton hideKing = new JButton("HIDE");
+    private final JButton hideQueen = new JButton("HIDE");
+    private final JButton hidePrince = new JButton("HIDE");
+    private final JButton hidePrincess = new JButton("HIDE");
     
     private final JButton color1 = new JButton("Color1");
     private final JButton color2 = new JButton("Color2");
@@ -213,6 +221,34 @@ public class FirstStage extends JPanel {
         // PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6 PANEL6
         
         
+        
+        
+        
+        // PANEL7 PANEL7 PANEL7 PANEL7 PANEL7 PANEL7 PANEL7 PANEL7 PANEL7
+        Color p7color = Color.LIGHT_GRAY;
+        JLabel jlabel7 = new JLabel("Royalty Displays");
+        JPanel panel7 = new JPanel(new BorderLayout());
+        JPanel panel7_center = new JPanel();
+        JPanel panel7_south = new JPanel();
+        jlabel7.setFont(new Font("Verdana",1,20));
+        panel7.setBackground(p7color);
+        panel7_center.setBackground(p7color);
+        panel7_south.setBackground(p7color);
+            panel7_center.add(showKing);
+            panel7_center.add(showQueen);
+            panel7_center.add(showPrince);
+            panel7_center.add(showPrincess);
+            panel7_south.add(hideKing);
+            panel7_south.add(hideQueen);
+            panel7_south.add(hidePrince);
+            panel7_south.add(hidePrincess);
+        panel7.add(jlabel7, BorderLayout.NORTH);
+        panel7.add(panel7_center, BorderLayout.CENTER);
+        panel7.add(panel7_south, BorderLayout.SOUTH);
+        panel7.setBorder(new javax.swing.border.LineBorder(Color.DARK_GRAY));
+        // PANEL7 PANEL7 PANEL7 PANEL7 PANEL7 PANEL7 PANEL7 PANEL7 PANEL7
+        
+        
         // Register listeners
         suspend.addActionListener(new Listener());
         resume.addActionListener(new Listener());
@@ -228,6 +264,14 @@ public class FirstStage extends JPanel {
         clearLuggage.addActionListener(new Listener());
         scene1.addActionListener(new Listener());
         scene2.addActionListener(new Listener());
+        showKing.addActionListener(new Listener());
+        showQueen.addActionListener(new Listener());
+        showPrince.addActionListener(new Listener());
+        showPrincess.addActionListener(new Listener());
+        hideKing.addActionListener(new Listener());
+        hideQueen.addActionListener(new Listener());
+        hidePrince.addActionListener(new Listener());
+        hidePrincess.addActionListener(new Listener());
         color1.addActionListener(new Listener());
         color2.addActionListener(new Listener());
         color3.addActionListener(new Listener());
@@ -286,7 +330,7 @@ public class FirstStage extends JPanel {
                 panelG.setLayout(experimentLayout);
 
                 panelG.add(panel1);     panelG.add(panel6);
-                panelG.add(panel3);     panelG.add(panela);
+                panelG.add(panel3);     panelG.add(panel7);
                 panelG.add(panel4);     panelG.add(panelb);
                 panelG.add(panel5);     panelG.add(panelc);
                 
@@ -333,8 +377,24 @@ public class FirstStage extends JPanel {
             } else if (e.getSource() == scene2) {
                 // CHANGE TO SCENE 2
                 currentScene = 2;
-                ss.showAllRoyalty();
+                ss.hideAllRoyalty();
                 ss.initScene2();
+            } else if (e.getSource() == showKing) {
+                ss.showKing();
+            } else if (e.getSource() == showQueen) {
+                ss.showQueen();
+            } else if (e.getSource() == showPrince) {
+                ss.showPrince();
+            } else if (e.getSource() == showPrincess) {
+                ss.showPrincess();
+            } else if (e.getSource() == hideKing) {
+                ss.hideKing();
+            } else if (e.getSource() == hideQueen) {
+                ss.hideQueen();
+            } else if (e.getSource() == hidePrince) {
+                ss.hidePrince();
+            } else if (e.getSource() == hidePrincess) {
+                ss.hidePrincess();
             } else if (e.getSource() == color1) {
                 ss.setBackgroundColor(s1_c1);
             } else if (e.getSource() == color2) {

@@ -66,5 +66,13 @@ public class SecondStage {
     public void initScene2() { ac.initScene2(); }
     public void hideAllRoyalty() { ac.hideAllRoyalty(); }
     public void showAllRoyalty() { ac.showAllRoyalty(); }
+    public void showKing() { ac.showKing(); }
+    public void showQueen() { ac.showQueen(); }
+    public void showPrince() { ac.showPrince(); }
+    public void showPrincess() { ac.showPrincess(); }
+    public void hideKing() { ac.hideKing(); }
+    public void hideQueen() { ac.hideQueen(); }
+    public void hidePrince() { ac.hidePrince(); }
+    public void hidePrincess() { ac.hidePrincess(); }
     public void setBackgroundColor(Color color) { ac.setBackgroundColor(color); }
 }

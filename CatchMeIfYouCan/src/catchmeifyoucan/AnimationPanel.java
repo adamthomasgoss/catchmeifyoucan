@@ -34,6 +34,10 @@ class AnimationPanel extends JPanel {
     private ArrayList<AnimatedAirplane> list_airplanes = new ArrayList<AnimatedAirplane>();
     private ArrayList<AnimatedLuggage> list_luggage = new ArrayList<AnimatedLuggage>();
     private ArrayList<AnimatedRoyalty> list_royalty = new ArrayList<AnimatedRoyalty>();
+    private AnimatedRoyalty royalty_king;
+    private AnimatedRoyalty royalty_queen;
+    private AnimatedRoyalty royalty_prince;
+    private AnimatedRoyalty royalty_princess;
     private AnimatedRectange rectangle;
     
     private int screenWidth;
@@ -46,6 +50,7 @@ class AnimationPanel extends JPanel {
         timer.start();
         airplaneTimer.start();
         luggageTimer.start();
+        initializeAllRoyalty();
     }
 
     @Override
@@ -186,7 +191,7 @@ class AnimationPanel extends JPanel {
         list_royalty.clear();
     }
     
-    public void showAllRoyalty() {
+    public void initializeAllRoyalty() {
         // 2000 pixels x 211 pixels
         Rectangle bounds = getBounds();
         
@@ -206,19 +211,28 @@ class AnimationPanel extends JPanel {
         int x = 100;
         int y = 100;
         
-        AnimatedRoyalty royalty_king = new AnimatedRoyalty(x, y, width, height, promKing);
+        this.royalty_king = new AnimatedRoyalty(x, y, width, height, promKing);
         y += (height + 100);
-        AnimatedRoyalty royalty_queen = new AnimatedRoyalty(x, y, width, height, promQueen);
+        this.royalty_queen = new AnimatedRoyalty(x, y, width, height, promQueen);
         y += (height + 100);
-        AnimatedRoyalty royalty_prince = new AnimatedRoyalty(x, y, width, height, promPrince);
+        this.royalty_prince = new AnimatedRoyalty(x, y, width, height, promPrince);
         y += (height + 100);
-        AnimatedRoyalty royalty_princess = new AnimatedRoyalty(x, y, width, height, promPrincess);
-        
+        this.royalty_princess = new AnimatedRoyalty(x, y, width, height, promPrincess);
+    }
+    
+    public void showKing() { list_royalty.add(royalty_king); }
+    public void hideKing() { list_royalty.remove(royalty_king); }
+    public void showQueen() { list_royalty.add(royalty_queen); }
+    public void hideQueen() { list_royalty.remove(royalty_queen); }
+    public void showPrince() { list_royalty.add(royalty_prince); }  
+    public void hidePrince() { list_royalty.remove(royalty_prince); }
+    public void showPrincess() { list_royalty.add(royalty_princess); }
+    public void hidePrincess() { list_royalty.remove(royalty_princess); }
+    public void showAllRoyalty() {
         list_royalty.add(royalty_king);
         list_royalty.add(royalty_queen);
         list_royalty.add(royalty_prince);
         list_royalty.add(royalty_princess);
-        // TODO: sort (if we need to)
     }
 
     @Override
