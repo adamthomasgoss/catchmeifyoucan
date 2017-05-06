@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -186,14 +187,37 @@ class AnimationPanel extends JPanel {
     }
     
     public void showAllRoyalty() {
-        int width = 500;
-        int height = 200;
-        String imageFile = "images/promKing.png";
-        int x = 200;
-        int y = 200;
+        // 2000 pixels x 211 pixels
+        Rectangle bounds = getBounds();
         
-        AnimatedRoyalty royalty = new AnimatedRoyalty(x, y, width, height, imageFile);
-        list_royalty.add(royalty);
+        // double widthD = (double)((bounds.getWidth() - 200.0) / 2.0);
+        double widthD = 1000;
+        System.out.println(widthD);
+        int width = (int)widthD;
+        
+        double heightD = (double)(widthD * 211.0 / 2000.0); // between 1 and 10: 1 = light, 10 = black
+        int height = (int)heightD;
+        
+        String promKing = "images/promKing.png";
+        String promQueen = "images/promQueen.png";
+        String promPrince = "images/promPrince.png";
+        String promPrincess = "images/promPrincess.png";
+        
+        int x = 100;
+        int y = 100;
+        
+        AnimatedRoyalty royalty_king = new AnimatedRoyalty(x, y, width, height, promKing);
+        y += (height + 100);
+        AnimatedRoyalty royalty_queen = new AnimatedRoyalty(x, y, width, height, promQueen);
+        y += (height + 100);
+        AnimatedRoyalty royalty_prince = new AnimatedRoyalty(x, y, width, height, promPrince);
+        y += (height + 100);
+        AnimatedRoyalty royalty_princess = new AnimatedRoyalty(x, y, width, height, promPrincess);
+        
+        list_royalty.add(royalty_king);
+        list_royalty.add(royalty_queen);
+        list_royalty.add(royalty_prince);
+        list_royalty.add(royalty_princess);
         // TODO: sort (if we need to)
     }
 
