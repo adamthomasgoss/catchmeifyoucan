@@ -57,13 +57,14 @@ public class SecondStage {
     public void setAirplaneSpeed (int speed) { ac.setAirplaneSpeed(speed); }
     public void setLuggageSpeed (int speed) { ac.setLuggageSpeed(speed); }
     public void addAirplane() { ac.addAirplane(); }
-    public void removeAirplane() {ac.removeAirplane(); }
-    public void clearAirplanes() {ac.clearAirplanes(); }
+    public void removeAirplane() { ac.removeAirplane(); }
+    public void clearAirplanes() { ac.clearAirplanes(); }
     public void addLuggage() { ac.addLuggage(); }
-    public void removeLuggage() {ac.removeLuggage(); }
-    public void clearLuggage() {ac.clearLuggage(); }
-    public void initScene1() {ac.initScene1(); }
-    public void initScene2() {ac.initScene2(); }
-    public void hideAllRoyalty() {ac.hideAllRoyalty(); }
+    public void removeLuggage() { ac.removeLuggage(); }
+    public void clearLuggage() { ac.clearLuggage(); }
+    public void initScene1() { ac.initScene1(); }
+    public void initScene2() { ac.initScene2(); }
+    public void hideAllRoyalty() { ac.hideAllRoyalty(); }
+    public void showAllRoyalty() { ac.showAllRoyalty(); }
     public void setBackgroundColor(Color color) { ac.setBackgroundColor(color); }
 }

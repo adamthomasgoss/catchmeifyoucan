@@ -64,6 +64,9 @@ public class AnimationControl extends JPanel {
         }
     }
     public void hideAllRoyalty() {
-        // TODO
+        animationPanel2.hideAllRoyalty();
+    }
+    public void showAllRoyalty() {
+        animationPanel2.showAllRoyalty();
     }
 }

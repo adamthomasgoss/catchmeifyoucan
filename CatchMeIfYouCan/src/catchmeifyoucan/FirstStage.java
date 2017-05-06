@@ -333,7 +333,7 @@ public class FirstStage extends JPanel {
             } else if (e.getSource() == scene2) {
                 // CHANGE TO SCENE 2
                 currentScene = 2;
-                ss.hideAllRoyalty();
+                ss.showAllRoyalty();
                 ss.initScene2();
             } else if (e.getSource() == color1) {
                 ss.setBackgroundColor(s1_c1);

@@ -8,6 +8,7 @@ package catchmeifyoucan;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -30,6 +32,7 @@ class AnimationPanel extends JPanel {
     private ArrayList<AnimatedShape> list = new ArrayList<AnimatedShape>();
     private ArrayList<AnimatedAirplane> list_airplanes = new ArrayList<AnimatedAirplane>();
     private ArrayList<AnimatedLuggage> list_luggage = new ArrayList<AnimatedLuggage>();
+    private ArrayList<AnimatedRoyalty> list_royalty = new ArrayList<AnimatedRoyalty>();
     private AnimatedRectange rectangle;
     
     private int screenWidth;
@@ -177,6 +180,22 @@ class AnimationPanel extends JPanel {
     public void clearLuggage() {
         list_luggage.clear();
     }
+    
+    public void hideAllRoyalty() {
+        list_royalty.clear();
+    }
+    
+    public void showAllRoyalty() {
+        int width = 500;
+        int height = 200;
+        String imageFile = "images/promKing.png";
+        int x = 200;
+        int y = 200;
+        
+        AnimatedRoyalty royalty = new AnimatedRoyalty(x, y, width, height, imageFile);
+        list_royalty.add(royalty);
+        // TODO: sort (if we need to)
+    }
 
     @Override
     // Paint the objects in the scene
@@ -193,6 +212,9 @@ class AnimationPanel extends JPanel {
         }
         for (AnimatedLuggage luggage  : list_luggage) {
             luggage.paint(this, g2d);
+        }
+        for (AnimatedRoyalty royalty : list_royalty) {
+            royalty.paint(this, g2d);
         }
     }
 
